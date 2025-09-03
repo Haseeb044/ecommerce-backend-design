@@ -5,99 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Home</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style2.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
-<!-- Header (trimmed to keep focus on profile card + dropdowns) -->
-<header class="bp-header" role="banner">
-    <div class="bp-container bp-header-top">
-        <div class="bp-brand">
-            <button class="bp-brand__icon" aria-hidden="true">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" fill="#2B9AF3"/><path d="M8 6V5a4 4 0 018 0v1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<body class="shopx-root">
+<!-- HEADER (from products.html) -->
+<header class="shopx-header">
+    <div class="shopx-container shopx-header-top">
+        <div class="shopx-brand">
+            <button class="shopx-brand__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="34" height="34" fill="none" aria-hidden="true">
+                    <rect x="3" y="6" width="18" height="14" rx="2" fill="#2B9AF3"/>
+                    <path d="M8 6V5a4 4 0 018 0v1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </button>
-            <div class="bp-brand__name">Brand</div>
+            <div class="shopx-brand__name">Brand</div>
         </div>
 
-        <form class="bp-search" role="search" aria-label="Site search">
-            <label class="bp-visually-hidden" for="bp-search-input">Search</label>
-            <input id="bp-search-input" class="bp-search__input" type="search" placeholder="Search" />
-            <div class="bp-select-wrap">
-                <button id="bp-cat-btn" class="bp-select-btn" aria-haspopup="true" aria-expanded="false" data-dropdown-target="#bp-cat-menu">
-                    All category
-                    <span class="bp-caret">▾</span>
-                </button>
-
-                <ul id="bp-cat-menu" class="bp-dropdown" role="menu" aria-hidden="true" data-owner="bp-cat-btn">
-                    <li role="menuitem"><button type="button" class="bp-dropdown__item">All category</button></li>
-                    <li role="menuitem"><button type="button" class="bp-dropdown__item">All category</button></li>
-                    <li role="menuitem"><button type="button" class="bp-dropdown__item">Electronics</button></li>
-                    <li role="menuitem"><button type="button" class="bp-dropdown__item">Clothes</button></li>
-                    <li role="menuitem"><button type="button" class="bp-dropdown__item">Home & Living</button></li>
-                </ul>
+        <form class="shopx-search" role="search" aria-label="Search form" th:action="@{/products}" method="get">
+            <input class="shopx-search__input" type="search" name="search" placeholder="Search" aria-label="Search" />
+            <div class="shopx-select">
+                <select name="category" class="shopx-btn shopx-select__btn">
+                    <option value="All category">All category</option>
+                    <option value="Mobile accessory">Mobile accessory</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Smartphones">Smartphones</option>
+                </select>
             </div>
-
-            <button class="bp-search__btn" type="submit" aria-label="Search">Search</button>
+            <button class="shopx-btn shopx-search__btn" type="submit">Search</button>
         </form>
 
-        <nav class="bp-top-actions" aria-label="Top actions">
-            <button class="bp-icon-btn" title="Profile" aria-label="Profile">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z" stroke="#6b7280" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20a8 8 0 0116 0" stroke="#6b7280" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <nav class="shopx-actions" aria-label="Top actions">
+            <button class="shopx-icon-btn" aria-label="Profile" title="Profile">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20a8 8 0 0116 0" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-
-            <button class="bp-icon-btn" title="Messages" aria-label="Messages">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <button class="shopx-icon-btn" aria-label="Messages" title="Messages">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#6b7280" stroke-width="1.2"/></svg>
             </button>
-
-            <button class="bp-icon-btn" title="Orders" aria-label="Orders">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <button class="shopx-icon-btn" aria-label="Orders" title="Orders">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke="#6b7280" stroke-width="1.2"/></svg>
             </button>
-
-            <button class="bp-cart-btn" aria-label="My cart">My cart</button>
+            <button class="shopx-cart-btn" aria-label="My cart">My cart</button>
         </nav>
     </div>
 
-    <div class="bp-container bp-nav-row" role="navigation" aria-label="Main navigation">
-        <div class="bp-nav-left">
-            <button id="bp-help-btn" class="bp-nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" data-dropdown-target="#bp-help-menu">
-                Help <span class="bp-caret">▾</span>
-            </button>
-
-            <ul id="bp-help-menu" class="bp-dropdown" role="menu" aria-hidden="true" data-owner="bp-help-btn">
-                <li role="menuitem"><a href="#">Help center</a></li>
-                <li role="menuitem"><a href="#">Support</a></li>
-                <li role="menuitem"><a href="#">FAQ</a></li>
+    <div class="shopx-container shopx-nav-row" role="navigation" aria-label="Main nav">
+        <div class="shopx-nav-left">
+            <button id="shopx-allcat-btn" class="shopx-allcat-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-allcat-menu">☰ All category</button>
+            <ul class="shopx-nav-links" role="menubar">
+                <li role="none"><a role="menuitem" th:href="@{/hot-offers}">Hot offers</a></li>
+                <li role="none"><a role="menuitem" th:href="@{/gift-boxes}">Gift boxes</a></li>
+                <li role="none"><a role="menuitem" th:href="@{/projects}">Projects</a></li>
+                <li role="none"><a role="menuitem" th:href="@{/menu-item}">Menu item</a></li>
+                <li role="none" class="shopx-has-dropdown">
+                    <button id="shopx-help-btn" class="shopx-nav-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-help-menu">Help <span class="shopx-caret">▾</span></button>
+                    <ul id="shopx-help-menu" class="shopx-dropdown" role="menu" aria-hidden="true" data-owner="shopx-help-btn">
+                        <li role="menuitem"><a th:href="@{/help-center}">Help center</a></li>
+                        <li role="menuitem"><a th:href="@{/support}">Support</a></li>
+                        <li role="menuitem"><a th:href="@{/faq}">FAQ</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
 
-        <div class="bp-nav-right">
-            <div class="bp-mini-dropdown">
-                <button id="bp-locale-btn" class="bp-mini-btn" aria-haspopup="true" aria-expanded="false" data-dropdown-target="#bp-locale-menu">
-                    English, USD ▾
-                </button>
-
-                <ul id="bp-locale-menu" class="bp-dropdown bp-dropdown--right" role="menu" aria-hidden="true" data-owner="bp-locale-btn">
-                    <li role="menuitem"><button class="bp-dropdown__item">English, USD</button></li>
-                    <li role="menuitem"><button class="bp-dropdown__item">Deutsch, EUR</button></li>
-                    <li role="menuitem"><button class="bp-dropdown__item">Français, EUR</button></li>
+        <div class="shopx-nav-right">
+            <div class="shopx-mini-dropdown">
+                <button id="shopx-locale-btn" class="shopx-mini-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-locale-menu">English, USD ▾</button>
+                <ul id="shopx-locale-menu" class="shopx-dropdown shopx-dropdown--right" role="menu" aria-hidden="true" data-owner="shopx-locale-btn">
+                    <li role="menuitem"><button class="shopx-dropdown__item">English, USD</button></li>
+                    <li role="menuitem"><button class="shopx-dropdown__item">Deutsch, EUR</button></li>
                 </ul>
             </div>
 
-            <div class="bp-mini-dropdown">
-                <button id="bp-shipto-btn" class="bp-mini-btn" aria-haspopup="true" aria-expanded="false" data-dropdown-target="#bp-shipto-menu">
-                    Ship to 🇩🇪 ▾
-                </button>
-
-                <ul id="bp-shipto-menu" class="bp-dropdown bp-dropdown--right" role="menu" aria-hidden="true" data-owner="bp-shipto-btn">
-                    <li role="menuitem"><button class="bp-dropdown__item">Germany</button></li>
-                    <li role="menuitem"><button class="bp-dropdown__item">United States</button></li>
-                    <li role="menuitem"><button class="bp-dropdown__item">United Kingdom</button></li>
+            <div class="shopx-mini-dropdown">
+                <button id="shopx-shipto-btn" class="shopx-mini-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-shipto-menu">Ship to 🇩🇪 ▾</button>
+                <ul id="shopx-shipto-menu" class="shopx-dropdown shopx-dropdown--right" role="menu" aria-hidden="true" data-owner="shopx-shipto-btn">
+                    <li role="menuitem"><button class="shopx-dropdown__item">Germany</button></li>
+                    <li role="menuitem"><button class="shopx-dropdown__item">United States</button></li>
                 </ul>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main page grid -->
+<!-- Main page grid (unchanged) -->
 <main class="bp-container bp-page" role="main">
     <div class="bp-grid">
 
@@ -155,7 +146,6 @@
                     <div class="bp-profile-card__body">
                         <p class="bp-profile-card__greet">Hi, user</p>
                         <h4 class="bp-profile-card__title">let's get started</h4>
-
                     </div>
                 </div>
                 <div class="bp-profile-card__actions">
@@ -175,7 +165,7 @@
     </div>
 </main>
 
-<!-- Deals and Offers -->
+<!-- Deals and Offers (unchanged) -->
 <div class="deals-main">
     <section class="deals-offers">
         <h2>Deals and offers</h2>
@@ -242,6 +232,7 @@
     </section>
 </div>
 
+<!-- Category section (unchanged) -->
 <section class="category-section">
     <!-- Left promo panel -->
     <aside class="promo">
@@ -405,7 +396,7 @@
     </div>
 </section>
 
-<!-- Quote request section: paste this into the middle of your page where needed -->
+<!-- Quote request section (unchanged) -->
 <section class="quote-section" aria-labelledby="quote-heading">
     <div class="quote-inner">
         <div class="quote-hero">
@@ -447,147 +438,29 @@
     </div>
 </section>
 
-<!-- Recommended items section (paste in the middle of your page where needed) -->
+<!-- Recommended items section (made dynamic with featured products) -->
 <section class="recommended" aria-labelledby="recommended-heading">
     <div class="recommended-inner">
         <h2 id="recommended-heading" class="recommended-title">Recommended items</h2>
 
         <div class="products-grid" role="list">
-            <!-- Card 1 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/T-Shirt1.png}" alt="Blue polo t-shirt" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$10.30</div>
-                    <div class="title">T-shirts with multiple colors, for men</div>
-                </div>
-            </article>
+            <article class="product-card" role="listitem" th:each="product : ${featuredProducts}">
+                <a th:href="@{/products/{id}(id=${product.id})}">
+                    <div class="thumb">
+                        <img th:src="${product.image}" th:alt="${product.name}" loading="lazy">
 
-            <!-- Card 2 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/Shorts1.png}" alt="Brown jacket with hood" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$10.30</div>
-                    <div class="title">Jeans shorts for men blue color</div>
-                </div>
-            </article>
-
-            <!-- Card 3 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/Coat1.png}" alt="Blue suit jacket" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$12.50</div>
-                    <div class="title">Brown winter coat medium size</div>
-                </div>
-            </article>
-
-            <!-- Card 4 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/Bag1.png}" alt="Blue leather wallet" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$34.00</div>
-                    <div class="title">Jeans bag for travel for men</div>
-                </div>
-            </article>
-
-            <!-- Card 5 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/Wallet1.png}" alt="Blue backpack" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$99.00</div>
-                    <div class="title">Leather wallet</div>
-                </div>
-            </article>
-
-            <!-- Card 6 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/Denim shorts.jpg}" alt="Denim shorts" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$9.99</div>
-                    <div class="title">Canon camera black, 100x zoom</div>
-                </div>
-            </article>
-
-            <!-- Card 7 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/HeadPhones (2).png}" alt="White headset" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$8.99</div>
-                    < <div class="title">Headset for gaming with mic</div>
-                </div>
-            </article>
-
-            <!-- Card 8 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/iPhone1.png}" alt="Smartwatch silver color modern" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$10.30</div>
-                    <div class="title">Smartwatch silver color modern</div>
-                </div>
-            </article>
-
-            <!-- Card 9 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/Wallet1.png}" alt="Blue wallet for men leather material" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$10.30</div>
-                    <div class="title">Blue wallet for men leather material</div>
-                </div>
-            </article>
-
-            <!-- Card 10 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/T-Shirt2.png}" alt="Jeans bag for travel for men" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$80.95</div>
-                    <div class="title">Jeans bag for travel for men</div>
-                </div>
-            </article>
-
-            <!-- Card 11 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/Blue casual shirt.jpg}" alt="Blue casual shirt" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$15.50</div>
-                    <div class="title">Casual shirt for men</div>
-                </div>
-            </article>
-
-            <!-- Card 12 -->
-            <article class="product-card" role="listitem">
-                <div class="thumb">
-                    <img th:src="@{/images/Brown leather bag.jpg}" alt="Travel leather bag" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="price">$45.00</div>
-                    <div class="title">Travel leather bag</div>
-                </div>
+                    </div>
+                    <div class="product-body">
+                        <div class="price" th:text="'$' + ${product.price}"></div>
+                        <div class="title" th:text="${product.name}"></div>
+                    </div>
+                </a>
             </article>
         </div>
     </div>
 </section>
-<!-- Extra services -->
+
+<!-- Extra services (unchanged) -->
 <section class="services-section" aria-labelledby="services-heading">
     <h2 id="services-heading" class="section-title">Our extra services</h2>
 
@@ -655,7 +528,7 @@
     </div>
 </section>
 
-<!-- Suppliers by region -->
+<!-- Suppliers by region (unchanged) -->
 <section class="regions-section" aria-labelledby="regions-heading">
     <h3 id="regions-heading" class="section-subtitle">Suppliers by region</h3>
 
@@ -733,7 +606,8 @@
         </li>
     </ul>
 </section>
-<!-- Newsletter subscribe section -->
+
+<!-- Newsletter subscribe section (unchanged from products.html) -->
 <section class="newsletter">
     <div class="wrap">
         <h2 class="newsletter-title">Subscribe on our newsletter</h2>
@@ -754,18 +628,17 @@
     </div>
 </section>
 
-<!-- Footer -->
+<!-- Footer (from products.html) -->
 <footer class="site-footer" role="contentinfo">
-    <div class="wrap footer-top">
+    <div class="footer-top">
         <div class="brand-col">
             <div class="brand">
-          <span class="brand-icon" aria-hidden="true">
-            <!-- simple bag icon -->
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 7V6a6 6 0 0 1 12 0v1"></path>
-              <rect x="3" y="7" width="18" height="14" rx="2"></rect>
-            </svg>
-          </span>
+                <span class="brand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 7V6a6 6 0 0 1 12 0v1"></path>
+                        <rect x="3" y="7" width="18" height="14" rx="2"></rect>
+                    </svg>
+                </span>
                 <span class="brand-name">Brand</span>
             </div>
 
@@ -774,16 +647,16 @@
             </p>
 
             <div class="socials" aria-label="Social links">
-                <a class="social" href="#" aria-label="Facebook">
+                <a class="social" th:href="@{/facebook}" aria-label="Facebook">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.2V12h2.2V9.8c0-2.2 1.3-3.4 3.3-3.4.96 0 1.96.17 1.96.17v2.2h-1.12c-1.1 0-1.44.68-1.44 1.37V12h2.45l-.39 2.9h-2.06v7A10 10 0 0 0 22 12z"/></svg>
                 </a>
-                <a class="social" href="#" aria-label="Twitter">
+                <a class="social" th:href="@{/twitter}" aria-label="Twitter">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22 5.9c-.6.3-1.2.6-1.9.8.7-.4 1.2-1 1.4-1.8-.6.4-1.4.6-2.2.8A3.9 3.9 0 0 0 12.3 8c0 .3 0 .7.1 1C8.4 9 5 7 2.6 3.6c-.3.5-.4 1-.4 1.7 0 1.3.6 2.4 1.6 3.1-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.4 3 3.8-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.4 3.3 2.5A7.8 7.8 0 0 1 2 19.5c-.4 0-.8 0-1.2-.1C1.1 20.6 6 22 11 22c6.6 0 10.2-5.5 10.2-10.2v-.5c.7-.5 1.2-1.2 1.6-2z"/></svg>
                 </a>
-                <a class="social" href="#" aria-label="LinkedIn">
+                <a class="social" th:href="@{/linkedin}" aria-label="LinkedIn">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.5-.9 1.7-1.7 3.4-1.7 3.6 0 4.3 2.4 4.3 5.5V21H19v-5.4c0-1.3 0-3-1.8-3-1.8 0-2.1 1.4-2.1 2.9V21H9z"/></svg>
                 </a>
-                <a class="social" href="#" aria-label="Instagram">
+                <a class="social" th:href="@{/instagram}" aria-label="Instagram">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8zm5.2-3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
                 </a>
             </div>
@@ -793,40 +666,40 @@
             <div class="col">
                 <h4>About</h4>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Find store</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Blogs</a></li>
+                    <li><a th:href="@{/about-us}">About Us</a></li>
+                    <li><a th:href="@{/find-store}">Find store</a></li>
+                    <li><a th:href="@{/categories}">Categories</a></li>
+                    <li><a th:href="@{/blogs}">Blogs</a></li>
                 </ul>
             </div>
 
             <div class="col">
                 <h4>Partnership</h4>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Find store</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Blogs</a></li>
+                    <li><a th:href="@{/about-us}">About Us</a></li>
+                    <li><a th:href="@{/find-store}">Find store</a></li>
+                    <li><a th:href="@{/categories}">Categories</a></li>
+                    <li><a th:href="@{/blogs}">Blogs</a></li>
                 </ul>
             </div>
 
             <div class="col">
                 <h4>Information</h4>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Money Refund</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Contact us</a></li>
+                    <li><a th:href="@{/help-center}">Help Center</a></li>
+                    <li><a th:href="@{/money-refund}">Money Refund</a></li>
+                    <li><a th:href="@{/shipping}">Shipping</a></li>
+                    <li><a th:href="@{/contact-us}">Contact us</a></li>
                 </ul>
             </div>
 
             <div class="col">
                 <h4>For users</h4>
                 <ul>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">My Orders</a></li>
+                    <li><a th:href="@{/login}">Login</a></li>
+                    <li><a th:href="@{/register}">Register</a></li>
+                    <li><a th:href="@{/settings}">Settings</a></li>
+                    <li><a th:href="@{/my-orders}">My Orders</a></li>
                 </ul>
             </div>
         </nav>
@@ -835,7 +708,6 @@
             <h4>Get app</h4>
             <div class="app-badges">
                 <a class="app-badge" href="#" aria-label="Download on the App Store">
-                    <!-- simplified App Store badge -->
                     <svg viewBox="0 0 120 34" width="120" height="34" aria-hidden="true">
                         <rect width="120" height="34" rx="6" fill="#000"/>
                         <text x="18" y="22" fill="#fff" font-size="9" font-family="Arial, sans-serif">Download on the</text>
@@ -868,6 +740,7 @@
         </div>
     </div>
 </footer>
+
 <script th:src="@{/js/script.js}"></script>
 </body>
 </html>
