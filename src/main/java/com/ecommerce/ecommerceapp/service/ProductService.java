@@ -27,12 +27,14 @@ public class ProductService {
         return repository.findById(id);
     }
 
-    public List<Product> getFeaturedProducts() {
+   public List<Product> getFeaturedProducts() {
         List<Product> products = repository.findFeaturedProducts();
-        logger.debug("Fetched featured products: {}", products);
-        return products.size() <= 10 ? products : products.subList(0, 10);
+        if (products.size() > 10) {
+            return products.subList(0, 10);
+        } else {
+            return products;
+        }
     }
-
     public List<Product> searchProducts(String keyword) {
         return repository.searchByNameOrCategory(keyword);
     }
