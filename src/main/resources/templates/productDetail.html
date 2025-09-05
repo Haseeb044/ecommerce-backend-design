@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>e-commerce | Product Details Page</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+            integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/productDetails.css}" />
+</head>
+<body>
+<!-- nav-1 -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <!-- Brand on the left -->
+        <a class="navbar-brand fw-bold" href="#">
+            <img th:src="@{/images/logo.png}" alt="Brand Logo" />Brand
+        </a>
+
+        <!-- Search bar with category dropdown in the center -->
+        <div class="d-flex justify-content-center flex-grow-1">
+            <form class="nav-search d-flex w-75" role="search">
+                <div class="input-group" style="width: 100%">
+                    <input class="form-control" type="search" placeholder="Search" />
+                    <button
+                            class="btn btn-outline-secondary dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                    >
+                        All category
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Category 1</a></li>
+                        <li><a class="dropdown-item" href="#">Category 2</a></li>
+                    </ul>
+                    <button
+                            type="submit"
+                            class="btn btn-primary px-4"
+                            style="background-color: #0067ff"
+                    >
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Icons on the right -->
+        <div class="upperNav-icons d-flex">
+            <a href="#" class="nav-link mx-2" title="Profile">
+                <i class="bi bi-person fs-5"></i><br />
+                <p>Profile</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="Message">
+                <i class="bi bi-chat fs-5"></i><br />
+                <p>Message</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="Orders">
+                <i class="bi bi-bag fs-5"></i>
+                <p>Orders</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="My cart">
+                <i class="bi bi-cart fs-5"></i>
+                <p>My cart</p>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- nav-2 -->
+<nav class="navbar nav-lower navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-three-dots-vertical"></i>
+                        All category
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hot offers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gift boxes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Menu item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Help
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navbarNavDropdown"
+        >
+            <ul class="navbar-nav" style="gap: 25px">
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        English, USD
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Ship to <img th:src="@{/images/GB@2x.png}" alt="Flag" />
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN PAGE -->
+<main class="shopx-container shopx-main">
+    <!-- breadcrumb -->
+    <nav class="shopx-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="#">Home</a> <i class="fa-solid fa-angle-right"></i></li>
+            <li>
+                <a href="#">Clothings</a> <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">Men's wear</a> <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li aria-current="page">Summer clothing</li>
+        </ol>
+    </nav>
+</main>
+
+<!-- product wrapper -->
+<section class="product-wrapper">
+    <!-- Left: Images -->
+    <div class="product-images">
+        <img th:src="@{/images/RI-1.png}" class="main-image" alt="Product" />
+        <div class="thumbnail-container">
+            <img th:src="@{/images/RI-1.png}" class="active" alt="Thumbnail 1" />
+            <img th:src="@{/images/RI-6.png}" alt="Thumbnail 2" />
+            <img th:src="@{/images/RI-7.png}" alt="Thumbnail 3" />
+            <img th:src="@{/images/image 23.png}" alt="Thumbnail 4" />
+            <img th:src="@{/images/C&G-8.png}" alt="Thumbnail 5" />
+        </div>
+    </div>
+
+    <!-- Middle: Details -->
+    <div class="product-details">
+        <div class="stock">✔ In stock</div>
+        <div class="product-title">
+            Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle
+        </div>
+        <div class="rating">
+            <svg
+                    width="104"
+                    height="36"
+                    viewBox="0 0 84 16"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <g fill="#FF9017">
+                    <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4" />
+                    <g transform="translate(14,0)">
+                        <polygon
+                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                        />
+                    </g>
+                    <g transform="translate(28,0)">
+                        <polygon
+                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                        />
+                    </g>
+                    <g transform="translate(42,0)">
+                        <polygon
+                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                        />
+                    </g>
+                </g>
+                <g transform="translate(56,0)" fill="#e5e7eb">
+                    <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4" />
+                </g>
+            </svg>
+            • <span><i class="fa-regular fa-message"></i> 9.3</span> • 32 reviews
+            • 154 sold
+        </div>
+
+        <div class="prices">
+            <div class="price-box" style="color: #fa3434">
+                $98.00 <br /><small>50–100 pcs</small>
+            </div>
+            <div class="price-box">$90.00 <br /><small>100–700 pcs</small></div>
+            <div class="price-box">$78.00 <br /><small>700+ pcs</small></div>
+        </div>
+
+        <table class="info-table">
+            <tr>
+                <td>Price:</td>
+                <td>Negotiable</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td>Classic shoes</td>
+            </tr>
+            <tr>
+                <td>Material:</td>
+                <td>Plastic material</td>
+            </tr>
+            <tr>
+                <td>Design:</td>
+                <td>Modern nice</td>
+            </tr>
+            <tr>
+                <td>Customization:</td>
+                <td>Customized logo and design custom packages</td>
+            </tr>
+            <tr>
+                <td>Protection:</td>
+                <td>Refund Policy</td>
+            </tr>
+            <tr>
+                <td>Warranty:</td>
+                <td>2 years full warranty</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Right: Seller -->
+    <div class="seller-card">
+        <div class="seller-header">
+            <div class="seller-logo">M</div>
+            <div class="seller-title">
+                <div class="seller-name">
+                    Supplier <br />
+                    Guanqio Trading LLC
+                </div>
+            </div>
+        </div>
+
+        <div class="seller-info">
+            <!-- Point 1: Flag + Location -->
+            <div class="seller-point">
+                <img th:src="@{/images/US@2x.png}" alt="Flag" class="flag-icon" />
+                <span>Germany, Berlin</span>
+            </div>
+
+            <!-- Point 2: Verified Seller -->
+            <div class="seller-point">
+                <i class="fas fa-check-circle"></i>
+                <span>Verified Seller</span>
+            </div>
+
+            <!-- Point 3: Worldwide Shipping -->
+            <div class="seller-point">
+                <i class="fas fa-globe"></i>
+                <span>Worldwide Shipping</span>
+            </div>
+        </div>
+
+        <div class="seller-buttons">
+            <button class="btn-inquiry">Send inquiry</button>
+            <button class="btn-profile">Seller’s profile</button>
+        </div>
+
+        <span class="save-link">♡ Save for later</span>
+    </div>
+</section>
+
+<!-- product details section -->
+<section class="product-section">
+    <!-- LEFT: MAIN DETAILS -->
+    <div class="details-box">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="active">Description</button>
+            <button>Reviews</button>
+            <button>Shipping</button>
+            <button>About seller</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, Quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur.
+            </p>
+
+            <!-- Table -->
+            <table class="info-table">
+                <tr>
+                    <td>Model</td>
+                    <td>#8786867</td>
+                </tr>
+                <tr>
+                    <td>Style</td>
+                    <td>Classic style</td>
+                </tr>
+                <tr>
+                    <td>Certificate</td>
+                    <td>ISO-898921212</td>
+                </tr>
+                <tr>
+                    <td>Size</td>
+                    <td>34mm × 450mm × 19mm</td>
+                </tr>
+                <tr>
+                    <td>Memory</td>
+                    <td>36GB RAM</td>
+                </tr>
+            </table>
+
+            <!-- Features -->
+            <ul class="features">
+                <li>Some great feature name here</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Some great feature name here</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- RIGHT: SIDEBAR -->
+    <aside class="sidebar">
+        <h3>You may like</h3>
+
+        <div class="sidebar-item">
+            <div
+                    class="sidebar-item-img"
+                    th:style="'background-image: url(' + @{/images/RI-3.png} + ')'"
+            ></div>
+            <div class="info">
+                <p>Men Blazers Sets Elegant Formal</p>
+                <span>$7.00 - $99.50</span>
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <div
+                    class="sidebar-item-img"
+                    th:style="'background-image: url(' + @{/images/RI-1.png} + ')'"
+            ></div>
+            <div class="info">
+                <p>Men Shirt Sleeve Polo Contrast</p>
+                <span>$7.00 - $99.50</span>
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <div
+                    class="sidebar-item-img"
+                    th:style="'background-image: url(' + @{/images/RI-2.png} + ')'"
+            ></div>
+            <div class="info">
+                <p>Apple Watch Series Space Gray</p>
+                <span>$7.00 - $99.50</span>
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <div
+                    class="sidebar-item-img"
+                    th:style="'background-image: url(' + @{/images/image 23.png} + ')'"
+            ></div>
+            <div class="info">
+                <p>Basketball Crew Socks Long Stuff</p>
+                <span>$7.00 - $99.50</span>
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <div
+                    class="sidebar-item-img"
+                    th:style="'background-image: url(' + @{/images/RI-5.png} + ')'"
+            ></div>
+            <div class="info">
+                <p>New Summer Men's castrol T-Shirts</p>
+                <span>$7.00 - $99.50</span>
+            </div>
+        </div>
+    </aside>
+</section>
+
+<!-- related-products section -->
+<section class="related-products">
+    <h2 class="section-title">Related products</h2>
+
+    <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <div
+                    class="product-image"
+                    th:style="'background-image: url(' + @{/images/RI-4.png} + ')'"
+            ></div>
+            <div class="product-info">
+                <div class="product-name">Xiaomi Redmi 8</div>
+                <div class="product-tag">Original</div>
+                <div class="product-price">$32.00-$40.00</div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div
+                    class="product-image"
+                    th:style="'background-image: url(' + @{/images/C&G-1.png} + ')'"
+            ></div>
+            <div class="product-info">
+                <div class="product-name">Xiaomi Redmi 8</div>
+                <div class="product-tag">Original</div>
+                <div class="product-price">$32.00-$40.00</div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <div
+                    class="product-image"
+                    th:style="'background-image: url(' + @{/images/C&G-3.png} + ')'"
+            ></div>
+            <div class="product-info">
+                <div class="product-name">Xiaomi Redmi 8</div>
+                <div class="product-tag">Original</div>
+                <div class="product-price">$32.00-$40.00</div>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div
+                    class="product-image"
+                    th:style="'background-image: url(' + @{/images/RI-6.png} + ')'"
+            ></div>
+            <div class="product-info">
+                <div class="product-name">Xiaomi Redmi 8</div>
+                <div class="product-tag">Original</div>
+                <div class="product-price">$32.00-$40.00</div>
+            </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <div
+                    class="product-image"
+                    th:style="'background-image: url(' + @{/images/C&G-4.png} + ')'"
+            ></div>
+            <div class="product-info">
+                <div class="product-name">Xiaomi Redmi 8</div>
+                <div class="product-tag">Original</div>
+                <div class="product-price">$32.00-$40.00</div>
+            </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+            <div
+                    class="product-image"
+                    th:style="'background-image: url(' + @{/images/H&O-7.png} + ')'"
+            ></div>
+            <div class="product-info">
+                <div class="product-name">Xiaomi Redmi 8</div>
+                <div class="product-tag">Original</div>
+                <div class="product-price">$32.00-$40.00</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="promo-banner">
+    <div class="promo-title">
+        Super discount on more than 100 USD
+        <p class="promo-text">Have you ever finally just write dummy info</p>
+    </div>
+    <div>
+        <a href="#" class="shop-now-btn">Shop now</a>
+    </div>
+</div>
+
+<!-- Footer starting -->
+<footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-top">
+        <div class="brand-col">
+            <div class="brand">
+                <div class="brand-icon"></div>
+                <span class="brand-name">Brand</span>
+            </div>
+
+            <p class="brand-desc">
+                Best information about the company goes here but now lorem ipsum is
+            </p>
+
+            <div class="socials" aria-label="Social links">
+                <a class="social" href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a class="social" href="#" aria-label="Twitter">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a class="social" href="#" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a class="social" href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+        <nav class="links-col" aria-label="Footer navigation">
+            <div class="col">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Find store</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Blogs</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>Partnership</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Find store</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Blogs</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>Information</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Money Refund</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>For users</h4>
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">My Orders</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="apps-col" aria-hidden="false">
+            <h4>Get app</h4>
+            <div class="app-badges">
+                <a href="#" aria-label="Download on the App Store">
+                    <div class="app-badge">
+                        <i class="fa-brands fa-apple" style="font-size: 40px"></i>
+                        <div class="badge-text">
+                            <p>
+                                Download on the <br />
+                                <span>App Store</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" aria-label="Get it on Google Play">
+                    <div class="app-badge">
+                        <i class="fa-brands fa-google-play" style="font-size: 35px"></i>
+                        <div class="badge-text">
+                            <p>
+                                Get on <br />
+                                <span>Google Play</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="wrap bottom-inner">
+            <div class="copyright">© 2023 Ecommerce.</div>
+
+            <div class="lang">
+                <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
+                    <div class="lang-btn-content">
+                        <div
+                                class="lang-btn-icon"
+                                th:style="'background-image: url(' + @{/images/US@2x.png} + ')'"
+                        ></div>
+                        <p>English</p>
+                        <i class="fa-solid fa-angle-up"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"
+></script>
+</body>
+</html>
