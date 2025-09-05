@@ -37,5 +37,16 @@ public class PageController {
         model.addAttribute("products", products);
         return "products";
     }
+    @GetMapping("/products/{id}")
+    public String productDetails(@PathVariable Integer id, Model model) {
+        Optional<Product> product = productService.getProductById(id);
+
+        if (product.isPresent()) {
+            model.addAttribute("product", product.get());
+            return "productDetail";
+        } else {
+            return "productNotFound";
+        }
+    }
 
 }
