@@ -35,9 +35,9 @@
 
         <!-- Search bar with category dropdown in the center -->
         <div class="d-flex justify-content-center flex-grow-1">
-            <form class="nav-search d-flex w-75" role="search">
+            <form class="nav-search d-flex w-75" role="search" th:action="@{/products}" method="get">
                 <div class="input-group" style="width: 100%">
-                    <input class="form-control" type="search" placeholder="Search" />
+                    <input class="form-control" type="search" placeholder="Search" name="search" th:value="${searchQuery}" />
                     <button
                             class="btn btn-outline-secondary dropdown-toggle"
                             type="button"
@@ -386,12 +386,12 @@
                             </g>
                             <g transform="translate(28,0)">
                               <polygon
-                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                      points="極,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
                               />
                             </g>
                             <g transform="translate(42,0)">
                               <polygon
-                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                      points="6,0 8,4 12,5 9,8 極,12 6,10 2,12 3,8 0,5 4,極"
                               />
                             </g>
                           </g>
@@ -430,9 +430,7 @@
                             </g>
                             <g transform="translate(42,0)">
                               <polygon
-                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2
-
-,12 3,8 0,5 4,4"
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
                               />
                             </g>
                           </g>
@@ -496,7 +494,7 @@
                         >
                           <g fill="#f59e0b">
                             <polygon
-                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                    points="6,0 8,4 12,5 9,8 10,12 6,極,2,12 3,8 0,5 4,4"
                             />
                             <g transform="translate(14,0)">
                               <polygon
@@ -533,10 +531,15 @@
         <section class="shopx-listing" aria-label="Products">
             <div class="shopx-listing__header">
                 <div class="shopx-list-meta">
-                    12,911 items in <strong>Mobile accessory</strong>
+                    <span th:if="${searchQuery}">
+                        <span th:text="${products.size()}"></span> search results for "<strong th:text="${searchQuery}"></strong>"
+                    </span>
+                    <span th:unless="${searchQuery}">
+                        <span th:text="${products.size()}"></span> items in <strong>Mobile accessory</strong>
+                    </span>
                 </div>
                 <div class="shopx-list-controls">
-                    <label class="shopx-checkbox-inline"
+                    <label class="shop極checkbox-inline"
                     ><input type="checkbox" /> Verified only</label
                     >
                     <div class="shopx-select-inline">
@@ -598,425 +601,46 @@
                 </div>
             </div>
 
-            <div id="shopx-products" class="shopx-products shopx-products--list">
-                <article class="shopx-product">
-                    <div class="shopx-product__media">
-                        <img th:src="@{/images/C&G-8.png}" alt="Phone" />
-                    </div>
-                    <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">
-                            Canon Camera EOS 2000, Black 10x zoom
-                        </h3>
-                        <div class="shopx-price-row">
-                            <div class="shopx-price">
-                                $998.00 <span class="shopx-price--old">$1128.00</span>
-                            </div>
-                            <div
-                                    class="shopx-fav"
-                                    title="Add to favorites"
-                                    aria-hidden="true"
-                            >
-                                ♡
-                            </div>
-                        </div>
-                        <div class="shopx-meta-row">
-                            <div class="shopx-rating">
-                                <svg
-                                        width="104"
-                                        height="36"
-                                        viewBox="0 0 84 16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <g fill="#FF9017">
-                                        <polygon
-                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                        />
-                                        <g transform="translate(14,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(28,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(42,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(56,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                    </g>
-                                </svg>
-                                <span class="shopx-rating__score">7.5</span>
-                            </div>
-                            <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
-                                • <span class="shopx-free">Free Shipping</span>
-                            </div>
-                        </div>
-                        <p class="shopx-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                            <
+            <!-- No products message -->
+            <div th:if="${products.empty}" class="shopx-no-products">
+                <p>No products found <span th:if="${searchQuery}">for your search "<strong th:text="${searchQuery}"></strong>"</span>.</p>
+                <p th:unless="${searchQuery}">There are currently no products available.</p>
+            </div>
 
-                            p>
-                            <a class="shopx-link" href="#">View details</a>
-                    </div>
-                </article>
-                <article class="shopx-product">
+            <!-- Products list -->
+            <div id="shopx-products" class="shopx-products shopx-products--list" th:unless="${products.empty}">
+                <article class="shopx-product" th:each="product : ${products}">
                     <div class="shopx-product__media">
-                        <img th:src="@{/images/image 23.png}" alt="Phone" />
+                        <img th:src="@{${product.image}}" th:alt="${product.name}" style="object-fit: contain" />
                     </div>
                     <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">
-                            Canon Camera EOS 2000, Black 10x zoom
+                        <h3 class="shopx-product__title" th:text="${product.name}">
+                            Product Name
                         </h3>
                         <div class="shopx-price-row">
                             <div class="shopx-price">
-                                $998.00 <span class="shopx-price--old">$1128.00</span>
+                                $<span th:text="${#numbers.formatDecimal(product.price, 1, 2)}">998.00</span>
                             </div>
-                            <div
-                                    class="shopx-fav"
-                                    title="Add to favorites"
-                                    aria-hidden="true"
-                            >
+                            <div class="shopx-fav" title="Add to favorites" aria-hidden="true">
                                 ♡
                             </div>
                         </div>
                         <div class="shopx-meta-row">
-                            <div class="shopx-rating">
-                                <svg
-                                        width="104"
-                                        height="36"
-                                        viewBox="0 0 84 16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <g fill="#FF9017">
-                                        <polygon
-                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                        />
-                                        <g transform="translate(14,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 rooftop2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(28,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(42,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(56,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                    </g>
-                                </svg>
-                                <span class="shopx-rating__score">7ка.5</span>
+                            <div class="shopx-stock" th:if="${product.stock > 0}">
+                                • In stock: <span th:text="${product.stock}">10</span>
                             </div>
-                            <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
-                                • <span class="shopx-free">Free Shipping</span>
+                            <div class="shopx-stock" th:if="${product.stock == 0}">
+                                • Out of stock
                             </div>
                         </div>
-                        <p class="shopx-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                        <p class="shopx-desc" th:text="${product.description}">
+                            Product description goes here...
                         </p>
-                        <a class="shopx-link" href="#">View details</a>
-                    </div>
-                </article>
-                <article class="shopx-product">
-                    <div class="shopx-product__media">
-                        <img th:src="@{/images/C&G-7.png}" alt="Phone" />
-                    </div>
-                    <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">
-                            Canon Camera EOS 2000, Black 10x zoom
-                        </h3>
-                        <div class="shopx-price-row">
-                            <div class="shopx-price">
-                                $998.00 <span class="shopx-price--old">$1128.00</span>
-                            </div>
-                            <div
-                                    class="shopx-fav"
-                                    title="Add to favorites"
-                                    aria-hidden="true"
-                            >
-                                ♡
-                            </div>
-                        </div>
-                        <div class="shopx-meta-row">
-                            <div class="shopx-rating">
-                                <svg
-                                        width="104"
-                                        height="36"
-                                        viewBox="0 0 84 16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <g fill="#FF9017">
-                                        <polygon
-                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                        />
-                                        <g transform="translate(14,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(28,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(42,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(56,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                    </g>
-                                </svg>
-                                <span class="shopx-rating__score">7.5</span>
-                            </div>
-                            <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
-                                • <span class="shopx-free">Free Shipping</span>
-                            </div>
-                        </div>
-                        <p class="shopx-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <a class="shopx-link" href="#">View details</a>
-                    </div>
-                </article>
-                <article class="shopx-product">
-                    <div class="shopx-product__media">
-                        <img
-                                th:src="@{/images/C&G-6.png}"
-                                alt="Phone"
-                                style="object-fit: contain"
-                        />
-                    </div>
-                    <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">
-                            Canon Camera EOS 2000, Black 10x zoom
-                        </h3>
-                        <div class="shopx-price-row">
-                            <div class="shopx-price">
-                                $998.00 <span class="shopx-price--old">$1128.00</span>
-                            </div>
-                            <div
-                                    class="shopx-fav"
-                                    title="Add to favorites"
-                                    aria-hidden="true"
-                            >
-                                ♡
-                            </div>
-                        </div>
-                        <div class="shopx-meta-row">
-                            <div class="shopx-rating">
-                                <svg
-                                        width="104"
-                                        height="36"
-                                        viewBox="0 0 84 16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <g fill="#FF9017">
-                                        <polygon
-                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                        />
-                                        <g transform="translate(14,0)">
-                                            <polygon
-                                                    points="6ಸ,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(28,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(42,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(56,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                    </g>
-                                </svg>
-                                <span class="shopx-rating__score">7.5</span>
-                            </div>
-                            <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
-                                • <span class="shopx-free">Free Shipping</span>
-                            </div>
-                        </div>
-                        <p class="shopx-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <a class="shopx-link" href="#">View details</a>
-                    </div>
-                </article>
-                <article class="shopx-product">
-                    <div class="shopx-product__media">
-                        <img th:src="@{/images/C&G-1.png}" alt="Phone" />
-                    </div>
-                    <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">
-                            Canon Camera EOS 2000, Black 10x zoom
-                        </h3>
-                        <div class="shopx-price-row">
-                            <div class="shopx-price">
-                                $998.00 <span class="shopx-price--old">$1128.00</span>
-                            </div>
-                            <div
-                                    class="shopx-fav"
-                                    title="Add to favorites"
-                                    aria-hidden="true"
-                            >
-                                ♡
-                            </div>
-                        </div>
-                        <div class="shopx-meta-row">
-                            <div class="shopx-rating">
-                                <svg
-                                        width="104"
-                                        height="36"
-                                        viewBox="0 0 84 16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <g fill="#FF9017">
-                                        <polygon
-                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                        />
-                                        <g transform="translate(14,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(28,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(42,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(56,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                    </g>
-                                </svg>
-                                <span class="shopx-rating__score">7.5</span>
-                            </div>
-                            <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
-                                • <span class="shopx-free">Free Shipping</span>
-                            </div>
-                        </div>
-                        <p class="shopx-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <a class="shopx-link" href="#">View details</a>
-                    </div>
-                </article>
-                <article class="shopx-product">
-                    <div class="shopx-product__media">
-                        <img th:src="@{/images/C&G-3.png}" alt="Phone" />
-                    </div>
-                    <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">
-                            Canon Camera EOS 2000, Black 10xPhotoshop xAI
-                        </h3>
-                        <div class="shopx-price-row">
-                            <div class="shopx-price">
-                                $998.00 <span class="shopx-price--old">$1128.00</span>
-                            </div>
-                            <div
-                                    class="shopx-fav"
-                                    title="Add to favorites"
-                                    aria-hidden="true"
-                            >
-                                ♡
-                            </div>
-                        </div>
-
-                        <div class="shopx-meta-row">
-                            <div class="shopx-rating">
-                                <svg
-                                        width="104"
-                                        height="36"
-                                        viewBox="0 0 84 16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <g fill="#FF9017">
-                                        <polygon
-                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                        />
-                                        <g transform="translate(14,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(28,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(42,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                        <g transform="translate(56,0)">
-                                            <polygon
-                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
-                                            />
-                                        </g>
-                                    </g>
-                                </svg>
-
-                                <span class="shopx-rating__score">7.5</span>
-                            </div>
-                            <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
-                                • <span class="shopx-free">Free Shipping</span>
-                            </div>
-                        </div>
-
-                        <p class="shopx-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <a class="shopx-link" href="#">View details</a>
+                        <a class="shopx-link" th:href="@{'/product/' + ${product.id}}">View details</a>
                     </div>
                 </article>
             </div>
+
         </section>
     </div>
 </main>
@@ -1039,7 +663,7 @@
                         focusable="false"
                 >
                     <path
-                            d="M3 6.5v11A1.5 1.5 0 0 0 4.5 19h15a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 19.5 5h-15A1.5 1.5 0 0 0 3 6.5z"
+                            d="M3 6.5v11A1.5 1.5 0 0 0 4.5 19h15a1.5 1.5 0 0 0 1.5-1.5極-11A1.5 1.5 0 0 0 19.5 5h-15A1.5 1.5 0 0 0 3 6.5z"
                             fill="none"
                             stroke="currentColor"
                             stroke-width="1.2"
@@ -1192,397 +816,397 @@
 
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9極2FzA8ZGN954O5Q"
         crossorigin="anonymous"
 ></script>
 <script>
     /* script.js — ShopX interactive behaviors (extended with range/ratings)
- - Namespaced classes/IDs (shopx-*) to avoid collisions
- - Dropdowns: open/close, keyboard (Enter/Space/ArrowDown/Escape), click outside closes
- - Accordion filters: expand/collapse
- - Sort/category selection updates visible label
- - View toggle (grid / list)
- - Price double-range slider: two range inputs + numeric fields + Apply button
- - Ratings/Condition: plain inputs; you can wire them to filtering later
-*/
+  - Namespaced classes/IDs (shopx-*) to avoid collisions
+  - Dropdowns: open/close, keyboard (Enter/Space/ArrowDown/Escape), click outside closes
+  - Accordion filters: expand/collapse
+  - Sort/category selection updates visible label
+  - View toggle (grid / list)
+  - Price double-range slider: two range inputs + numeric fields + Apply button
+  - Ratings/Condition: plain inputs; you can wire them to filtering later
+  */
 
-    (function () {
-      // Helpers
-      const find = (sel) => Array.from(document.querySelectorAll(sel));
-      const one = (sel) => document.querySelector(sel);
+  (function () {
+    // Helpers
+    const find = (sel) => Array.from(document.querySelectorAll(sel));
+    const one = (sel) => document.querySelector(sel);
 
-      /* DROPDOWNS */
-      const dropdownButtons = find("[data-dropdown]");
-      const openMenus = new Set();
+    /* DROPDOWNS */
+    const dropdownButtons = find("[data-dropdown]");
+    const openMenus = new Set();
 
-      function openDropdown(btn, menu) {
-        if (!menu || !btn) return;
-        closeAllDropdowns();
-        btn.setAttribute("aria-expanded", "true");
-        menu.classList.add("shopx-open");
-        menu.classList.add("bp-open");
-        menu.setAttribute("aria-hidden", "false");
-        openMenus.add(menu);
-        const rect = menu.getBoundingClientRect();
-        if (rect.right > window.innerWidth - 12) {
-          menu.classList.add("shopx-flip-right");
-          menu.style.left = "auto";
-          menu.style.right = "0";
-        }
-        const first = menu.querySelector("button, a");
-        if (first) first.focus();
+    function openDropdown(btn, menu) {
+      if (!menu || !btn) return;
+      closeAllDropdowns();
+      btn.setAttribute("aria-expanded", "true");
+      menu.classList.add("shopx-open");
+      menu.classList.add("bp-open");
+      menu.setAttribute("aria-hidden", "false");
+      openMenus.add(menu);
+      const rect = menu.getBoundingClientRect();
+      if (rect.right > window.innerWidth - 12) {
+        menu.classList.add("shopx-flip-right");
+        menu.style.left = "auto";
+        menu.style.right = "0";
       }
+      const first = menu.querySelector("button, a");
+      if (first) first.focus();
+    }
 
-      function closeDropdown(btn, menu) {
-        if (!menu || !btn) return;
-        btn.setAttribute("aria-expanded", "false");
+    function closeDropdown(btn, menu) {
+      if (!menu || !btn) return;
+      btn.setAttribute("aria-expanded", "false");
+      menu.classList.remove("shopx-open", "bp-open", "shopx-flip-right");
+      menu.setAttribute("aria-hidden", "true");
+      menu.style.left = "";
+      menu.style.right = "";
+      openMenus.delete(menu);
+    }
+
+    function closeAllDropdowns() {
+      openMenus.forEach((menu) => {
+        const ownerId = menu.getAttribute("data-owner");
+        let owner = ownerId
+          ? document.getElementById(ownerId)
+          : menu.parentElement.querySelector("[data-dropdown]");
+        if (owner) owner.setAttribute("aria-expanded", "false");
         menu.classList.remove("shopx-open", "bp-open", "shopx-flip-right");
         menu.setAttribute("aria-hidden", "true");
         menu.style.left = "";
         menu.style.right = "";
-        openMenus.delete(menu);
-      }
+      });
+      openMenus.clear();
+    }
 
-      function closeAllDropdowns() {
-        openMenus.forEach((menu) => {
+    dropdownButtons.forEach((btn) => {
+      const targetSelector = btn.getAttribute("data-dropdown");
+      const menu = targetSelector
+        ? document.querySelector(targetSelector)
+        : btn.parentElement.querySelector(".shopx-dropdown");
+
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!menu) return;
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        if (expanded) closeDropdown(btn, menu);
+        else openDropdown(btn, menu);
+      });
+
+      // keyboard open
+      btn.addEventListener("keydown", (e) => {
+        if (["Enter", " ", "ArrowDown"].includes(e.key)) {
+          e.preventDefault();
+          const menu = targetSelector
+            ? document.querySelector(targetSelector)
+            : btn.parentElement.querySelector(".shopx-dropdown");
+          if (menu) openDropdown(btn, menu);
+        } else if (e.key === "Escape") {
+          const menu = targetSelector
+            ? document.querySelector(targetSelector)
+            : btn.parentElement.querySelector(".shopx-dropdown");
+          if (menu) closeDropdown(btn, menu);
+        }
+      });
+    });
+
+    // dropdown internal keyboard nav & selection
+    find(".shopx-dropdown").forEach((menu) => {
+      menu.addEventListener("keydown", (e) => {
+        const items = Array.from(menu.querySelectorAll("button, a")).filter(
+          Boolean
+        );
+        if (!items.length) return;
+        const idx = items.indexOf(document.activeElement);
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          items[(idx + 1) % items.length].focus();
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          items[(idx - 1 + items.length) % items.length].focus();
+        } else if (e.key === "Home") {
+          e.preventDefault();
+          items[0].focus();
+        } else if (e.key === "End") {
+          e.preventDefault();
+          items[items.length - 1].focus();
+        } else if (e.key === "Escape") {
           const ownerId = menu.getAttribute("data-owner");
-          let owner = ownerId
+          const owner = ownerId
             ? document.getElementById(ownerId)
             : menu.parentElement.querySelector("[data-dropdown]");
-          if (owner) owner.setAttribute("aria-expanded", "false");
-          menu.classList.remove("shopx-open", "bp-open", "shopx-flip-right");
-          menu.setAttribute("aria-hidden", "true");
-          menu.style.left = "";
-          menu.style.right = "";
-        });
-        openMenus.clear();
-      }
-
-      dropdownButtons.forEach((btn) => {
-        const targetSelector = btn.getAttribute("data-dropdown");
-        const menu = targetSelector
-          ? document.querySelector(targetSelector)
-          : btn.parentElement.querySelector(".shopx-dropdown");
-
-        btn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          if (!menu) return;
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-          if (expanded) closeDropdown(btn, menu);
-          else openDropdown(btn, menu);
-        });
-
-        // keyboard open
-        btn.addEventListener("keydown", (e) => {
-          if (["Enter", " ", "ArrowDown"].includes(e.key)) {
-            e.preventDefault();
-            const menu = targetSelector
-              ? document.querySelector(targetSelector)
-              : btn.parentElement.querySelector(".shopx-dropdown");
-            if (menu) openDropdown(btn, menu);
-          } else if (e.key === "Escape") {
-            const menu = targetSelector
-              ? document.querySelector(targetSelector)
-              : btn.parentElement.querySelector(".shopx-dropdown");
-            if (menu) closeDropdown(btn, menu);
-          }
-        });
-      });
-
-      // dropdown internal keyboard nav & selection
-      find(".shopx-dropdown").forEach((menu) => {
-        menu.addEventListener("keydown", (e) => {
-          const items = Array.from(menu.querySelectorAll("button, a")).filter(
-            Boolean
-          );
-          if (!items.length) return;
-          const idx = items.indexOf(document.activeElement);
-          if (e.key === "ArrowDown") {
-            e.preventDefault();
-            items[(idx + 1) % items.length].focus();
-          } else if (e.key === "ArrowUp") {
-            e.preventDefault();
-            items[(idx - 1 + items.length) % items.length].focus();
-          } else if (e.key === "Home") {
-            e.preventDefault();
-            items[0].focus();
-          } else if (e.key === "End") {
-            e.preventDefault();
-            items[items.length - 1].focus();
-          } else if (e.key === "Escape") {
-            const ownerId = menu.getAttribute("data-owner");
-            const owner = ownerId
-              ? document.getElementById(ownerId)
-              : menu.parentElement.querySelector("[data-dropdown]");
-            if (owner) {
-              closeDropdown(owner, menu);
-              owner.focus();
-            } else closeAllDropdowns();
-          }
-        });
-
-        menu.addEventListener("click", (e) => {
-          const clicked = e.target.closest("button, a");
-          if (!clicked) return;
-          const ownerId = menu.getAttribute("data-owner");
-          if (ownerId) {
-            const ownerBtn = document.getElementById(ownerId);
-            // update label for category or sort selects
-            if (
-              (menu.id === "shopx-cat-menu" ||
-                menu.id === "shopx-sort-menu") &&
-              ownerBtn
-            ) {
-              const caret = ownerBtn.querySelector(".shopx-caret");
-              ownerBtn.textContent = clicked.textContent.trim();
-              if (caret) ownerBtn.appendChild(caret);
-            }
-            if (ownerBtn) {
-              closeDropdown(ownerBtn, menu);
-              ownerBtn.focus();
-            }
-          } else {
-            closeAllDropdowns();
-          }
-        });
-      });
-
-      // click outside to close
-      document.addEventListener("click", (e) => {
-        if (openMenus.size === 0) return;
-        let inside = false;
-        openMenus.forEach((m) => {
-          if (m.contains(e.target)) inside = true;
-        });
-        if (!inside) closeAllDropdowns();
-      });
-
-      // Escape global
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeAllDropdowns();
-      });
-
-      // ACCORDIONS (filters)
-      find("[data-accordion]").forEach((section) => {
-        const btn = section.querySelector(".shopx-accordion-btn");
-        // content is next element (list or div)
-        const next = btn.nextElementSibling;
-        if (!next) return;
-        function setState(expanded) {
-          btn.setAttribute("aria-expanded", expanded ? "true" : "false");
-          next.style.display = expanded ? "" : "none";
+          if (owner) {
+            closeDropdown(owner, menu);
+            owner.focus();
+          } else closeAllDropdowns();
         }
-        // keep visible if aria-expanded not explicitly set (default true)
-        setState(
-          btn.getAttribute("aria-expanded") === "false" ? false : true
-        );
-
-        btn.addEventListener("click", () => {
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-          setState(!expanded);
-        });
       });
 
-      // VIEW TOGGLE (grid / list)
-      const productsContainer = one("#shopx-products");
-      find(".shopx-view-btn").forEach((b) => {
-        b.addEventListener("click", () => {
-          const view = b.getAttribute("data-view");
-          find(".shopx-view-btn").forEach((x) =>
-            x.setAttribute("aria-pressed", "false")
-          );
-          b.setAttribute("aria-pressed", "true");
-          if (view === "grid") {
-            productsContainer.classList.remove("shopx-products--list");
-            productsContainer.classList.add("shopx-products--grid");
-            document.querySelectorAll(".shopx-desc").forEach((desc)=>{
-              desc.style.display="none"
-            })
-             document.querySelectorAll(".shopx-free").forEach((desc)=>{
-              desc.style.display="none"
-            })
-               document.querySelectorAll(".shopx-orders").forEach((desc)=>{
-              desc.style.display="none"
-            })
-              document.querySelectorAll(".shopx-link").forEach((desc)=>{
-              desc.style.display="none"
-            })
-             document.querySelectorAll(".shopx-product").forEach((desc)=>{
-              desc.classList.add("shopx-products_grid")
-            })
-
-          } else {
-            productsContainer.classList.remove("shopx-products--grid");
-            productsContainer.classList.add("shopx-products--list");
-             document.querySelectorAll(".shopx-product").forEach((desc)=>{
-              desc.classList.remove("shopx-products_grid")
-                document.querySelectorAll(".shopx-desc").forEach((desc)=>{
-              desc.style.display="flex"
-            })
-             document.querySelectorAll(".shopx-free").forEach((desc)=>{
-              desc.style.display="flex"
-            })
-               document.querySelectorAll(".shopx-orders").forEach((desc)=>{
-              desc.style.display="flex"
-            })
-              document.querySelectorAll(".shopx-link").forEach((desc)=>{
-              desc.style.display="flex"
-            })
-            })
+      menu.addEventListener("click", (e) => {
+        const clicked = e.target.closest("button, a");
+        if (!clicked) return;
+        const ownerId = menu.getAttribute("data-owner");
+        if (ownerId) {
+          const ownerBtn = document.getElementById(ownerId);
+          // update label for category or sort selects
+          if (
+            (menu.id === "shopx-cat-menu" ||
+              menu.id === "shopx-sort-menu") &&
+            ownerBtn
+          ) {
+            const caret = ownerBtn.querySelector(".shopx-caret");
+            ownerBtn.textContent = clicked.textContent.trim();
+            if (caret) ownerBtn.appendChild(caret);
           }
-        });
+          if (ownerBtn) {
+            closeDropdown(ownerBtn, menu);
+            ownerBtn.focus();
+          }
+        } else {
+          closeAllDropdowns();
+        }
       });
+    });
 
-      if (productsContainer)
-        productsContainer.classList.add("shopx-products--list");
+    // click outside to close
+    document.addEventListener("click", (e) => {
+      if (openMenus.size === 0) return;
+      let inside = false;
+      openMenus.forEach((m) => {
+        if (m.contains(e.target)) inside = true;
+      });
+      if (!inside) closeAllDropdowns();
+    });
 
-      // PRICE RANGE (double-thumb)
-      function initRange(containerSelector) {
-        const container = one(containerSelector);
-        if (!container) return;
-        const minRange = container.querySelector(".shopx-range__input--min");
-        const maxRange = container.querySelector(".shopx-range__input--max");
-        const minInput = container.querySelector(
+    // Escape global
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAllDropdowns();
+    });
+
+    // ACCORDIONS (filters)
+    find("[data-accordion]").forEach((section) => {
+      const btn = section.querySelector(".shopx-accordion-btn");
+      // content is next element (list or div)
+      const next = btn.nextElementSibling;
+      if (!next) return;
+      function setState(expanded) {
+        btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+        next.style.display = expanded ? "" : "none";
+      }
+      // keep visible if aria-expanded not explicitly set (default true)
+      setState(
+        btn.getAttribute("aria-expanded") === "false" ? false : true
+      );
+
+      btn.addEventListener("click", () => {
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        setState(!expanded);
+      });
+    });
+
+    // VIEW TOGGLE (grid / list)
+    const productsContainer = one("#shopx-products");
+    find(".shopx-view-btn").forEach((b) => {
+      b.addEventListener("click", () => {
+        const view = b.getAttribute("data-view");
+        find(".shopx-view-btn").forEach((x) =>
+          x.setAttribute("aria-pressed", "false")
+        );
+        b.setAttribute("aria-pressed", "true");
+        if (view === "grid") {
+          productsContainer.classList.remove("shopx-products--list");
+          productsContainer.classList.add("shopx-products--grid");
+          document.querySelectorAll(".shopx-desc").forEach((desc)=>{
+            desc.style.display="none"
+          })
+           document.querySelectorAll(".shopx-free").forEach((desc)=>{
+            desc.style.display="none"
+          })
+             document.querySelectorAll(".shopx-orders").forEach((desc)=>{
+            desc.style.display="none"
+          })
+            document.querySelectorAll(".shopx-link").forEach((desc)=>{
+            desc.style.display="none"
+          })
+           document.querySelectorAll(".shopx-product").forEach((desc)=>{
+            desc.classList.add("shopx-products_grid")
+          })
+
+        } else {
+          productsContainer.classList.remove("shopx-products--grid");
+          productsContainer.classList.add("shopx-products--list");
+           document.querySelectorAll(".shopx-product").forEach((desc)=>{
+            desc.classList.remove("shopx-products_grid")
+              document.querySelectorAll(".shopx-desc").forEach((desc)=>{
+            desc.style.display="flex"
+          })
+           document.querySelectorAll(".shopx-free").forEach((desc)=>{
+            desc.style.display="flex"
+          })
+             document.querySelectorAll(".shopx-orders").forEach((desc)=>{
+            desc.style.display="flex"
+          })
+            document.querySelectorAll(".shopx-link").forEach((desc)=>{
+            desc.style.display="flex"
+          })
+          })
+        }
+      });
+    });
+
+    if (productsContainer)
+      productsContainer.classList.add("shopx-products--list");
+
+    // PRICE RANGE (double-thumb)
+    function initRange(containerSelector) {
+      const container = one(containerSelector);
+      if (!container) return;
+      const minRange = container.querySelector(".shopx-range__input--min");
+      const maxRange = container.querySelector(".shopx-range__input--max");
+      const minInput = container.querySelector(
+        '.shopx-input--small[type="number"]'
+      );
+      const maxInput =
+        container.querySelectorAll(
           '.shopx-input--small[type="number"]'
+        )[1] ||
+        container.querySelector('.shopx-input--small[type="number"]');
+      const applyBtn = container.querySelector(".shopx-range__apply");
+      const track = container.querySelector(".shopx-range__track");
+      const min = Number(minRange.min || 0);
+      const max = Number(minRange.max || 1000000);
+      const gap = 0; // minimum gap between thumbs
+
+      function setPositions() {
+        const minVal = Math.min(
+          Number(minRange.value),
+          Number(maxRange.value) - gap
         );
-        const maxInput =
-          container.querySelectorAll(
-            '.shopx-input--small[type="number"]'
-          )[1] ||
-          container.querySelector('.shopx-input--small[type="number"]');
-        const applyBtn = container.querySelector(".shopx-range__apply");
-        const track = container.querySelector(".shopx-range__track");
-        const min = Number(minRange.min || 0);
-        const max = Number(minRange.max || 1000000);
-        const gap = 0; // minimum gap between thumbs
+        const maxVal = Math.max(
+          Number(maxRange.value),
+          Number(minRange.value) + gap
+        );
 
-        function setPositions() {
-          const minVal = Math.min(
-            Number(minRange.value),
-            Number(maxRange.value) - gap
-          );
-          const maxVal = Math.max(
-            Number(maxRange.value),
-            Number(minRange.value) + gap
-          );
+        // sync numeric inputs
+        if (minInput) minInput.value = minVal;
+        if (maxInput) maxInput.value = maxVal;
 
-          // sync numeric inputs
-          if (minInput) minInput.value = minVal;
-          if (maxInput) maxInput.value = maxVal;
+        // calculate percentages for filled segment
+        const range = max - min;
+        const leftPercent = ((minVal - min) / range) * 100;
+        const rightPercent = ((maxVal - min) / range) * 100;
 
-          // calculate percentages for filled segment
-          const range = max - min;
-          const leftPercent = ((minVal - min) / range) * 100;
-          const rightPercent = ((maxVal - min) / range) * 100;
+        // paint track with gradient: unfilled - filled - unfilled
+        const trackLeft = leftPercent;
+        const trackRight = rightPercent;
+        track.style.background = `linear-gradient(90deg, #dbeafe ${trackLeft}%, #2B9AF3 ${trackLeft}%, #2B9AF3 ${trackRight}%, #dbeafe ${trackRight}%)`;
 
-          // paint track with gradient: unfilled - filled - unfilled
-          const trackLeft = leftPercent;
-          const trackRight = rightPercent;
-          track.style.background = `linear-gradient(90deg, #dbeafe ${trackLeft}%, #2B9AF3 ${trackLeft}%, #2B9AF3 ${trackRight}%, #dbeafe ${trackRight}%)`;
-
-          // set data attribute for CSS if needed
-          container.setAttribute("data-filled", "true");
-        }
-
-        // keep thumbs from crossing
-        minRange.addEventListener("input", () => {
-          if (Number(minRange.value) > Number(maxRange.value) - gap) {
-            minRange.value = Number(maxRange.value) - gap;
-          }
-          setPositions();
-        });
-        maxRange.addEventListener("input", () => {
-          if (Number(maxRange.value) < Number(minRange.value) + gap) {
-            maxRange.value = Number(minRange.value) + gap;
-          }
-          setPositions();
-        });
-
-        // number inputs update ranges
-        if (minInput) {
-          minInput.addEventListener("change", () => {
-            let v = Number(minInput.value || min);
-            v = Math.max(min, Math.min(v, Number(maxRange.value)));
-            minRange.value = v;
-            setPositions();
-          });
-        }
-        if (maxInput) {
-          maxInput.addEventListener("change", () => {
-            let v = Number(maxInput.value || max);
-            v = Math.min(max, Math.max(v, Number(minRange.value)));
-            maxRange.value = v;
-            setPositions();
-          });
-        }
-
-        // apply button (for now simply logs; integrate to real filtering later)
-        if (applyBtn) {
-          applyBtn.addEventListener("click", () => {
-            const selectedMin = Number(minRange.value);
-            const selectedMax = Number(maxRange.value);
-            console.log("Price filter applied:", {
-              min: selectedMin,
-              max: selectedMax,
-            });
-            // TODO: hook this to actual filtering logic (client-side or API)
-            // Example: dispatch a custom event
-            container.dispatchEvent(
-              new CustomEvent("shopx:priceApplied", {
-                detail: { min: selectedMin, max: selectedMax },
-              })
-            );
-          });
-        }
-
-        // initialize
-        // ensure sensible order
-        if (Number(minRange.value) > Number(maxRange.value))
-          minRange.value = min;
-        setPositions();
+        // set data attribute for CSS if needed
+        container.setAttribute("data-filled", "true");
       }
 
-      // init price range inside the filters block
+      // keep thumbs from crossing
+      minRange.addEventListener("input", () => {
+        if (Number(minRange.value) > Number(maxRange.value) - gap) {
+          minRange.value = Number(maxRange.value) - gap;
+        }
+        setPositions();
+      });
+      maxRange.addEventListener("input", () => {
+        if (Number(maxRange.value) < Number(minRange.value) + gap) {
+          maxRange.value = Number(minRange.value) + gap;
+        }
+        setPositions();
+      });
+
+      // number inputs update ranges
+      if (minInput) {
+        minInput.addEventListener("change", () => {
+          let v = Number(minInput.value || min);
+          v = Math.max(min, Math.min(v, Number(maxRange.value)));
+          minRange.value = v;
+          setPositions();
+        });
+      }
+      if (maxInput) {
+        maxInput.addEventListener("change", () => {
+          let v = Number(maxInput.value || max);
+          v = Math.min(max, Math.max(v, Number(minRange.value)));
+          maxRange.value = v;
+          setPositions();
+        });
+      }
+
+      // apply button (for now simply logs; integrate to real filtering later)
+      if (applyBtn) {
+        applyBtn.addEventListener("click", () => {
+          const selectedMin = Number(minRange.value);
+          const selectedMax = Number(maxRange.value);
+          console.log("Price filter applied:", {
+            min: selectedMin,
+            max: selectedMax,
+          });
+          // TODO: hook this to actual filtering logic (client-side or API)
+          // Example: dispatch a custom event
+          container.dispatchEvent(
+            new CustomEvent("shopx:priceApplied", {
+              detail: { min: selectedMin, max: selectedMax },
+            })
+          );
+        });
+      }
+
+      // initialize
+      // ensure sensible order
+      if (Number(minRange.value) > Number(maxRange.value))
+        minRange.value = min;
+      setPositions();
+    }
+
+    // init price range inside the filters block
+    initRange(".shopx-range");
+
+    // Ratings and Condition controls are standard form inputs. For UX we can expose events.
+    // Example: listen for rating selections
+    find('.shopx-rating-row input[type="checkbox"]').forEach((cb) => {
+      cb.addEventListener("change", () => {
+        // compute selected ratings
+        const selected = find(
+          '.shopx-rating-row input[type="checkbox"]:checked'
+        ).map((i) => i.value);
+        // dispatch or log
+        console.log("Selected ratings:", selected);
+        document.dispatchEvent(
+          new CustomEvent("shopx:ratingsChanged", { detail: selected })
+        );
+      });
+    });
+
+    // Condition radio change:
+    find('input[name="shopx-condition"]').forEach((r) => {
+      r.addEventListener("change", () => {
+        console.log("Condition selected:", r.value);
+        document.dispatchEvent(
+          new CustomEvent("shopx:conditionChanged", { detail: r.value })
+        );
+      });
+    });
+
+    // Keep dropdowns responsive (clear inline styles on resize)
+    window.addEventListener("resize", () => {
+      find(".shopx-dropdown").forEach((m) => {
+        m.style.left = "";
+        m.style.right = "";
+      });
+      // re-init range painting so track sizes recalc
       initRange(".shopx-range");
+    });
 
-      // Ratings and Condition controls are standard form inputs. For UX we can expose events.
-      // Example: listen for rating selections
-      find('.shopx-rating-row input[type="checkbox"]').forEach((cb) => {
-        cb.addEventListener("change", () => {
-          // compute selected ratings
-          const selected = find(
-            '.shopx-rating-row input[type="checkbox"]:checked'
-          ).map((i) => i.value);
-          // dispatch or log
-          console.log("Selected ratings:", selected);
-          document.dispatchEvent(
-            new CustomEvent("shopx:ratingsChanged", { detail: selected })
-          );
-        });
-      });
-
-      // Condition radio change:
-      find('input[name="shopx-condition"]').forEach((r) => {
-        r.addEventListener("change", () => {
-          console.log("Condition selected:", r.value);
-          document.dispatchEvent(
-            new CustomEvent("shopx:conditionChanged", { detail: r.value })
-          );
-        });
-      });
-
-      // Keep dropdowns responsive (clear inline styles on resize)
-      window.addEventListener("resize", () => {
-        find(".shopx-dropdown").forEach((m) => {
-          m.style.left = "";
-          m.style.right = "";
-        });
-        // re-init range painting so track sizes recalc
-        initRange(".shopx-range");
-      });
-
-      // small accessibility enhancement: focus trap not implemented here
-    })();
+    // small accessibility enhancement: focus trap not implemented here
+  })();
 </script>
 </body>
 </html>
