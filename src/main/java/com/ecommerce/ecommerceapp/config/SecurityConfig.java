@@ -33,6 +33,7 @@ public class SecurityConfig {
                                 "/products",
                                 "/products/**",
                                 "/auth/login",
+                                "/add-product",
                                 "/auth/signup",
                                 "/webjars/**",
                                 "/css/**",
