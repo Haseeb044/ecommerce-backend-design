@@ -25,7 +25,7 @@
 </head>
 <body>
 <!-- nav-1 -->
-
+<!-- nav-1 -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <!-- Brand on the left -->
@@ -35,10 +35,10 @@
 
         <!-- Search bar with category dropdown in the center -->
         <div class="d-flex justify-content-center flex-grow-1">
-            <form class="nav-search d-flex w-75" role="search">
+            <form class="nav-search d-flex w-75" role="search" th:action="@{/products}" method="get">
                 <div class="input-group" style="width: 100%">
                     <!-- Add width:100% -->
-                    <input class="form-control" type="search" placeholder="Search" />
+                    <input class="form-control" type="search" name="search" placeholder="Search" required />
                     <button
                             class="btn btn-outline-secondary dropdown-toggle"
                             type="button"
@@ -82,7 +82,6 @@
         </div>
     </div>
 </nav>
-
 <!-- nav-2 -->
 <nav class="navbar nav-lower navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -211,7 +210,6 @@
     </section>
 
     <!-- Deals and Offers -->
-
     <section class="deals-offers-section">
         <div class="deals-main">
             <div class="deals-offers">
@@ -246,29 +244,25 @@
 
                 <div class="card">
                     <img th:src="@{/images/C&G-6.png}" alt="Laptop" />
-
                     <h3 class="title">Laptops</h3>
                     <div class="badge">-15%</div>
                 </div>
 
                 <div class="card">
                     <img th:src="@{/images/C&G-2.png}" alt="Camera" />
-
                     <h3 class="title">GoPro cameras</h3>
                     <div class="badge">-40%</div>
                 </div>
 
                 <div class="card">
                     <img th:src="@{/images/C&G-3.png}" alt="Headphones" />
-
                     <h3 class="title">Headphones</h3>
                     <div class="badge">-25%</div>
                 </div>
 
                 <div class="card">
                     <img th:src="@{/images/C&G-7.png}" alt="Phone" />
-
-                    <h3 class="title">Canon camreras</h3>
+                    <h3 class="title">Canon cameras</h3>
                     <div class="badge">-25%</div>
                 </div>
             </div>
@@ -276,7 +270,6 @@
     </section>
 
     <!-- home and outdoors section -->
-
     <section class="home-outdoors-section">
         <div class="H-O-container">
             <div
@@ -290,10 +283,7 @@
             <div class="H-O-cards">
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/H&O-1.png} + ')'"
@@ -301,10 +291,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/H&O-2.png} + ')'"
@@ -312,10 +299,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/H&O-3.png} + ')'"
@@ -331,10 +315,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/H&O-5.png} + ')'"
@@ -342,10 +323,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/H&O-6.png} + ')'"
@@ -353,10 +331,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/H&O-7.png} + ')'"
@@ -364,10 +339,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/H&O-8.png} + ')'"
@@ -378,7 +350,6 @@
     </section>
 
     <!-- Electronic and gadget section -->
-
     <section class="home-outdoors-section">
         <div class="H-O-container">
             <div
@@ -392,10 +363,7 @@
             <div class="H-O-cards">
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/C&G-1.png} + ')'"
@@ -403,10 +371,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/C&G-2.png} + ')'"
@@ -414,10 +379,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/C&G-3.png} + ')'"
@@ -433,10 +395,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/C&G-5.png} + ')'"
@@ -444,10 +403,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/C&G-6.png} + ')'"
@@ -455,10 +411,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/C&G-7.png} + ')'"
@@ -466,10 +419,7 @@
                 </div>
                 <div class="card">
                     <h3>soft chairs</h3>
-                    <p>
-                        from <br />
-                        USD 100
-                    </p>
+                    <p>from <br />USD 100</p>
                     <div
                             class="card-img"
                             th:style="'background-image: url(' + @{/images/C&G-8.png} + ')'"
@@ -479,7 +429,7 @@
         </div>
     </section>
 
-    <!-- Quote request section: paste this into the middle of your page where needed -->
+    <!-- Quote request section -->
     <section class="quote-section" aria-labelledby="quote-heading">
         <div class="quote-inner">
             <div class="quote-hero">
@@ -498,9 +448,7 @@
                 </h3>
 
                 <form class="inquiry-form" action="#" method="post" novalidate>
-                    <label class="visually-hidden" for="item"
-                    >What item you need?</label
-                    >
+                    <label class="visually-hidden" for="item">What item you need?</label>
                     <input
                             id="item"
                             name="item"
@@ -545,7 +493,7 @@
         </div>
     </section>
 
-    <!-- Recommended items section (paste in the middle of your page where needed) -->
+    <!-- Recommended items section -->
     <section class="recommended" aria-labelledby="recommended-heading">
         <div class="recommended-inner">
             <h2 id="recommended-heading" class="recommended-title">
@@ -553,133 +501,14 @@
             </h2>
 
             <div class="products-grid" role="list">
-                <!-- Card 1 -->
-                <article class="product-card" role="listitem">
+                <!-- Dynamic featured products -->
+                <article class="product-card" role="listitem" th:each="product : ${featuredProducts}">
                     <div class="thumb">
-                        <img
-                                th:src="@{/images/RI-1.png}"
-                                alt="Blue polo t-shirt"
-                                loading="lazy"
-                        />
+                        <img th:src="@{${product.image}}" th:alt="${product.name}" loading="lazy" />
                     </div>
                     <div class="product-body">
-                        <div class="price">$10.30</div>
-                        <div class="title">T-shirts with multiple colors, for men</div>
-                    </div>
-                </article>
-
-                <!-- Card 2 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img
-                                th:src="@{/images/RI-2.png}"
-                                alt="Brown jacket with hood"
-                                loading="lazy"
-                        />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$10.30</div>
-                        <div class="title">Jeans shorts for men blue color</div>
-                    </div>
-                </article>
-
-                <!-- Card 3 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img
-                                th:src="@{/images/RI-3.png}"
-                                alt="Blue suit jacket"
-                                loading="lazy"
-                        />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$12.50</div>
-                        <div class="title">Brown winter coat medium size</div>
-                    </div>
-                </article>
-
-                <!-- Card 4 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img
-                                th:src="@{/images/RI-4.png}"
-                                alt="Blue leather wallet"
-                                loading="lazy"
-                        />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$34.00</div>
-                        <div class="title">Jeans bag for travel for men</div>
-                    </div>
-                </article>
-
-                <!-- Card 5 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img th:src="@{/images/RI-5.png}" alt="Blue backpack" loading="lazy" />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$99.00</div>
-                        <div class="title">Leather wallet</div>
-                    </div>
-                </article>
-
-                <!-- Card 6 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img th:src="@{/images/RI-6.png}" alt="Denim shorts" loading="lazy" />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$9.99</div>
-                        <div class="title">Canon camera black, 100x zoom</div>
-                    </div>
-                </article>
-
-                <!-- Card 7 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img th:src="@{/images/RI-7.png}" alt="White headset" loading="lazy" />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$8.99</div>
-                        <div class="title">Headset for gaming with mic</div>
-                    </div>
-                </article>
-
-                <!-- Card 8 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img
-                                th:src="@{/images/RI-8.png}"
-                                alt="Blue backpack (repeat)"
-                                loading="lazy"
-                        />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$10.30</div>
-                        <div class="title">Smartwatch silver color modern</div>
-                    </div>
-                </article>
-
-                <!-- Card 9 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img th:src="@{/images/RI-9.png}" alt="Clay pot" loading="lazy" />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$10.30</div>
-                        <div class="title">Blue wallet for men leather material</div>
-                    </div>
-                </article>
-
-                <!-- Card 10 -->
-                <article class="product-card" role="listitem">
-                    <div class="thumb">
-                        <img th:src="@{/images/RI-9.png}" alt="Black kettle" loading="lazy" />
-                    </div>
-                    <div class="product-body">
-                        <div class="price">$80.95</div>
-                        <div class="title">Jeans bag for travel for men</div>
+                        <div class="price" th:text="'$' + ${product.price}">Price</div>
+                        <div class="title" th:text="${product.name}">Product Name</div>
                     </div>
                 </article>
             </div>
@@ -977,11 +806,6 @@
             </form>
         </div>
     </section>
-
-
-
-
-
 
     <!-- Footer starting -->
     <footer class="site-footer" role="contentinfo">

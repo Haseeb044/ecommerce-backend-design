@@ -177,7 +177,11 @@
             <li>
                 <a href="#">Men's wear</a> <i class="fa-solid fa-angle-right"></i>
             </li>
+<<<<<<< HEAD
             <li aria-current="page">Summer clothing</li>
+=======
+            <li aria-current="page" th:text="${product.category}">Summer clothing</li>
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         </ol>
     </nav>
 </main>
@@ -186,8 +190,14 @@
 <section class="product-wrapper">
     <!-- Left: Images -->
     <div class="product-images">
+<<<<<<< HEAD
         <img th:src="@{/images/RI-1.png}" class="main-image" alt="Product" />
         <div class="thumbnail-container">
+=======
+        <img th:src="@{${product.image}}" class="main-image" th:alt="'Product Image for ' + ${product.name}" />
+        <div class="thumbnail-container">
+            <!-- Static thumbnails; replace with th:each if thumbnails are added to Product entity -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
             <img th:src="@{/images/RI-1.png}" class="active" alt="Thumbnail 1" />
             <img th:src="@{/images/RI-6.png}" alt="Thumbnail 2" />
             <img th:src="@{/images/RI-7.png}" alt="Thumbnail 3" />
@@ -198,8 +208,13 @@
 
     <!-- Middle: Details -->
     <div class="product-details">
+<<<<<<< HEAD
         <div class="stock">✔ In stock</div>
         <div class="product-title">
+=======
+        <div class="stock" th:text="${product.stock > 0} ? '✔ In stock' : 'Out of stock'">✔ In stock</div>
+        <div class="product-title" th:text="${product.name}">
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
             Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle
         </div>
         <div class="rating">
@@ -231,12 +246,22 @@
                     <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4" />
                 </g>
             </svg>
+<<<<<<< HEAD
             • <span><i class="fa-regular fa-message"></i> 9.3</span> • 32 reviews
             • 154 sold
+=======
+            <!-- Static rating; add rating field to Product entity for dynamic data -->
+            • <span><i class="fa-regular fa-message"></i> 9.3</span>
+            <!-- Static reviews; add reviewCount field to Product entity for dynamic data -->
+            • <span>32 reviews</span>
+            <!-- Static sold count; add soldCount field to Product entity for dynamic data -->
+            • <span>154 sold</span>
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         </div>
 
         <div class="prices">
             <div class="price-box" style="color: #fa3434">
+<<<<<<< HEAD
                 $98.00 <br /><small>50–100 pcs</small>
             </div>
             <div class="price-box">$90.00 <br /><small>100–700 pcs</small></div>
@@ -244,6 +269,16 @@
         </div>
 
         <table class="info-table">
+=======
+                <span th:text="'$' + ${product.price} + '.00'">$98.00</span>
+                <!-- Static range; add price tiers to Product entity if needed -->
+                <br /><small>Single item</small>
+            </div>
+        </div>
+
+        <table class="info-table">
+            <!-- Static attributes; add List<Attribute> attributes to Product entity for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
             <tr>
                 <td>Price:</td>
                 <td>Negotiable</td>
@@ -278,11 +313,20 @@
     <!-- Right: Seller -->
     <div class="seller-card">
         <div class="seller-header">
+<<<<<<< HEAD
+=======
+            <!-- Static seller initial; add seller field to Product entity for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
             <div class="seller-logo">M</div>
             <div class="seller-title">
                 <div class="seller-name">
                     Supplier <br />
+<<<<<<< HEAD
                     Guanqio Trading LLC
+=======
+                    <!-- Static seller name; add seller field to Product entity for dynamic data -->
+                    <span>Guanqio Trading LLC</span>
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
                 </div>
             </div>
         </div>
@@ -290,17 +334,31 @@
         <div class="seller-info">
             <!-- Point 1: Flag + Location -->
             <div class="seller-point">
+<<<<<<< HEAD
                 <img th:src="@{/images/US@2x.png}" alt="Flag" class="flag-icon" />
+=======
+                <!-- Static flag; add seller field with flagImage to Product entity for dynamic data -->
+                <img th:src="@{/images/US@2x.png}" alt="Flag" class="flag-icon" />
+                <!-- Static location; add seller field with location to Product entity for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
                 <span>Germany, Berlin</span>
             </div>
 
             <!-- Point 2: Verified Seller -->
+<<<<<<< HEAD
+=======
+            <!-- Static; add seller field with isVerified to Product entity for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
             <div class="seller-point">
                 <i class="fas fa-check-circle"></i>
                 <span>Verified Seller</span>
             </div>
 
             <!-- Point 3: Worldwide Shipping -->
+<<<<<<< HEAD
+=======
+            <!-- Static; add seller field with hasWorldwideShipping to Product entity for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
             <div class="seller-point">
                 <i class="fas fa-globe"></i>
                 <span>Worldwide Shipping</span>
@@ -330,6 +388,7 @@
 
         <!-- Tab Content -->
         <div class="tab-content">
+<<<<<<< HEAD
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -342,10 +401,18 @@
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                 reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                 pariatur.
+=======
+            <p th:text="${product.description}">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit...
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
             </p>
 
             <!-- Table -->
             <table class="info-table">
+<<<<<<< HEAD
+=======
+                <!-- Static specifications; add List<Attribute> specifications to Product entity for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
                 <tr>
                     <td>Model</td>
                     <td>#8786867</td>
@@ -370,6 +437,10 @@
 
             <!-- Features -->
             <ul class="features">
+<<<<<<< HEAD
+=======
+                <!-- Static features; add List<String> features to Product entity for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
                 <li>Some great feature name here</li>
                 <li>Lorem ipsum dolor sit amet, consectetur</li>
                 <li>Duis aute irure dolor in reprehenderit</li>
@@ -382,6 +453,10 @@
     <aside class="sidebar">
         <h3>You may like</h3>
 
+<<<<<<< HEAD
+=======
+        <!-- Static recommended products; add List<RelatedProduct> to model for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         <div class="sidebar-item">
             <div
                     class="sidebar-item-img"
@@ -444,7 +519,11 @@
     <h2 class="section-title">Related products</h2>
 
     <div class="products-grid">
+<<<<<<< HEAD
         <!-- Product 1 -->
+=======
+        <!-- Static related products; add List<RelatedProduct> to model for dynamic data -->
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         <div class="product-card">
             <div
                     class="product-image"
@@ -457,7 +536,10 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Product 2 -->
+=======
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         <div class="product-card">
             <div
                     class="product-image"
@@ -470,7 +552,10 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Product 3 -->
+=======
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         <div class="product-card">
             <div
                     class="product-image"
@@ -483,7 +568,10 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Product 4 -->
+=======
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         <div class="product-card">
             <div
                     class="product-image"
@@ -496,7 +584,10 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Product 5 -->
+=======
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         <div class="product-card">
             <div
                     class="product-image"
@@ -509,7 +600,10 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Product 6 -->
+=======
+>>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
         <div class="product-card">
             <div
                     class="product-image"
