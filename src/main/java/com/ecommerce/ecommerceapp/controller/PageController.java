@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -38,10 +39,6 @@ public class PageController {
         return "products";
     }
     @GetMapping("/products/{id}")
-<<<<<<< HEAD
-    public String productDetails(@PathVariable Long id) {
-        return "productDetail";
-=======
     public String productDetails(@PathVariable Integer id, Model model) {
         Optional<Product> product = productService.getProductById(id);
 
@@ -51,7 +48,6 @@ public class PageController {
         } else {
             return "productNotFound";
         }
->>>>>>> 6ed3751069c2bdabfe18513a4d16ce04f44e9071
     }
 
 }

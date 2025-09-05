@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Secure Access</title>
+  <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+        --primary-color: #4e73df;
+        --primary-dark: #2e59d9;
+        --secondary-color: #f8f9fc;
+        --accent-color: #36b9cc;
+        --text-color: #5a5c69;
+        --error-color: #e74a3b;
+        --success-color: #1cc88a;
+        --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        --strong-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        background-image:
+            radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+            radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+        animation: float 15s infinite ease-in-out;
+        z-index: -1;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        33% { transform: translate(30px, -30px) rotate(2deg); }
+        66% { transform: translate(-20px, 20px) rotate(-2deg); }
+    }
+
+    .signup-container {
+        width: 100%;
+        max-width: 450px;
+        perspective: 1000px;
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: var(--strong-shadow);
+        padding: 2.5rem 2rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: none;
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px) rotateX(2deg);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .welcome-text {
+        color: var(--text-color);
+        font-weight: 700;
+        margin-bottom: 2rem;
+        position: relative;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    .welcome-text::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        margin: 15px auto 0;
+        border-radius: 3px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        font-size: 0.95rem;
+    }
+
+    .input-group {
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s;
+        position: relative;
+        width: 100%;
+    }
+
+    .input-group:focus-within {
+        transform: translateY(-2px);
+    }
+
+    .input-group-text {
+        background: linear-gradient(to bottom, #f8f9fc, #e9ecef);
+        border: 1px solid #d1d3e2;
+        border-right: none;
+        border-radius: 0.5rem 0 0 0.5rem;
+        color: var(--primary-color);
+        padding: 0.75rem 1rem;
+        width: 50px;
+        justify-content: center;
+    }
+
+    .form-control {
+        border: 1px solid #d1d3e2;
+        border-left: none;
+        border-radius: 0 0.5rem 0.5rem 0;
+        padding: 0.75rem;
+        transition: all 0.3s;
+        background-color: var(--secondary-color);
+        height: 100%;
+        width: 100%;
+        flex: 1;
+    }
+
+    .form-control::placeholder {
+        color: #b7b9cc;
+        font-size: 0.9rem;
+    }
+
+    .form-control:focus {
+        border-color: #d1d3e2;
+        box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.15);
+        background-color: #fff;
+    }
+
+    .form-control:focus + .input-group-text {
+        border-color: #d1d3e2;
+    }
+
+    .btn-signup {
+        background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        box-shadow: var(--light-shadow);
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+
+    .btn-signup::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: 0.5s;
+    }
+
+    .btn-signup:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(78, 115, 223, 0.3);
+    }
+
+    .btn-signup:hover::before {
+        left: 100%;
+    }
+
+    .btn-signup:active {
+        transform: translateY(-1px);
+    }
+
+    .alert {
+        border-radius: 0.5rem;
+        border: none;
+        box-shadow: var(--light-shadow);
+        padding: 0.9rem 1.25rem;
+        margin-bottom: 1.8rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .alert i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+    }
+
+    .login-link {
+        color: var(--primary-color);
+        font-weight: 600;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .login-link::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: width 0.3s;
+    }
+
+    .login-link:hover {
+        color: var(--primary-dark);
+        text-decoration: none;
+    }
+
+    .login-link:hover::after {
+        width: 100%;
+    }
+
+    .footer-text {
+        color: #858796;
+        font-size: 0.8rem;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .form-field-container {
+        margin-bottom: 1.5rem;
+    }
+
+    .input-icon {
+        margin-right: 12px;
+        font-size: 1rem;
+    }
+
+    .password-feedback {
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: none;
+    }
+
+    .password-match {
+        color: var(--success-color);
+    }
+
+    .password-mismatch {
+        color: var(--error-color);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+        .card {
+            padding: 2rem 1.5rem;
+        }
+
+        .welcome-text {
+            font-size: 1.6rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group-text {
+            width: 45px;
+        }
+    }
+  </style>
+</head>
+<body>
+<div class="signup-container">
+  <div class="card">
+    <h2 class="welcome-text">Create Account</h2>
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      <i class="fas fa-exclamation-circle"></i>
+      <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/auth/signup}" th:object="${authRequest}" method="post" id="signupForm">
+      <div class="form-field-container">
+        <label for="username" class="form-label">
+          <i class="fas fa-user input-icon"></i>Username
+        </label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+          <input type="text" class="form-control" id="username" name="username" th:field="*{username}" placeholder="Enter your username" required>
+        </div>
+      </div>
+
+      <div class="form-field-container">
+        <label for="password" class="form-label">
+          <i class="fas fa-lock input-icon"></i>Password
+        </label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="Create a password" required>
+        </div>
+      </div>
+
+      <div class="form-field-container">
+        <label for="confirmPassword" class="form-label">
+          <i class="fas fa-lock input-icon"></i>Confirm Password
+        </label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+        </div>
+        <div id="passwordFeedback" class="password-feedback"></div>
+      </div>
+
+      <button type="submit" class="btn btn-signup" id="submitButton">
+        <i class="fas fa-user-plus me-2"></i>Sign Up
+      </button>
+    </form>
+
+    <p class="mt-4 text-center mb-1">Already have an account? <a class="login-link" th:href="@{/auth/login}">Login</a></p>
+
+    <p class="footer-text">Secure Access System &copy; 2023</p>
+  </div>
+</div>
+
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      const feedbackElement = document.getElementById('passwordFeedback');
+      const submitButton = document.getElementById('submitButton');
+      const form = document.getElementById('signupForm');
+
+      function validatePassword() {
+          const password = passwordInput.value;
+          const confirmPassword = confirmPasswordInput.value;
+
+          if (confirmPassword === '') {
+              feedbackElement.style.display = 'none';
+              submitButton.disabled = false;
+              return true;
+          }
+
+          if (password === confirmPassword) {
+              feedbackElement.textContent = 'Passwords match!';
+              feedbackElement.className = 'password-feedback password-match';
+              feedbackElement.style.display = 'block';
+              submitButton.disabled = false;
+              return true;
+          } else {
+              feedbackElement.textContent = 'Passwords do not match!';
+              feedbackElement.className = 'password-feedback password-mismatch';
+              feedbackElement.style.display = 'block';
+              submitButton.disabled = true;
+              return false;
+          }
+      }
+
+      confirmPasswordInput.addEventListener('input', validatePassword);
+      passwordInput.addEventListener('input', validatePassword);
+
+      form.addEventListener('submit', function(event) {
+          if (!validatePassword()) {
+              event.preventDefault();
+              alert('Please make sure your passwords match before submitting.');
+          }
+      });
+  });
+</script>
+</body>
+</html>
