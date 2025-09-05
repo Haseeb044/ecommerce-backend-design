@@ -16,6 +16,9 @@ public class PageController {
     private String products(){
         return "products";
     }
-
+    @GetMapping("/products/{id}")
+    public String productDetails(@PathVariable Long id) {
+        return "productDetail";
+    }
 
 }
