@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>e-commerce | Home Page</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+            integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+</head>
+<body>
+<!-- nav-1 -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <!-- Brand on the left -->
+        <a class="navbar-brand fw-bold" href="#"
+        ><img th:src="@{/images/logo.png}" alt="" />Brand</a
+        >
+
+        <!-- Search bar with category dropdown in the center -->
+        <div class="d-flex justify-content-center flex-grow-1">
+            <form class="nav-search d-flex w-75" role="search">
+                <div class="input-group" style="width: 100%">
+                    <!-- Add width:100% -->
+                    <input class="form-control" type="search" placeholder="Search" />
+                    <button
+                            class="btn btn-outline-secondary dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                    >
+                        All category
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Category 1</a></li>
+                        <li><a class="dropdown-item" href="#">Category 2</a></li>
+                    </ul>
+                    <button
+                            type="submit"
+                            class="btn btn-primary px-4"
+                            style="background-color: #0067ff"
+                    >
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Icons on the right -->
+        <div class="upperNav-icons d-flex">
+            <a href="#" class="nav-link mx-2" title="Profile">
+                <i class="bi bi-person fs-5"></i><br />
+                <p>Profile</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="Message">
+                <i class="bi bi-chat fs-5"></i><br />
+                <p>Message</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="Orders">
+                <i class="bi bi-bag fs-5"></i>
+                <p>Orders</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="My cart">
+                <i class="bi bi-cart fs-5"></i>
+                <p>My cart</p>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- nav-2 -->
+<nav class="navbar nav-lower navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-three-dots-vertical"></i>
+                        All category</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hot offers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gift boxes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Menu item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Help
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navbarNavDropdown"
+        >
+            <ul class="navbar-nav" style="gap: 25px">
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        English, USD
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Ship to <img th:src="@{/images/GB@2x.png}" alt="" />
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- nav-ending -->
+
+<main>
+    <section class="categories-section">
+        <div class="categories-container">
+            <div class="category-section">
+                <div class="category-list">
+                    <div class="category-item">Automobiles</div>
+                    <div class="category-item">Clothes and wear</div>
+                    <div class="category-item">Home interiors</div>
+                    <div class="category-item">Computer and tech</div>
+                    <div class="category-item">Tools, equipments</div>
+                    <div class="category-item">Sports and outdoor</div>
+                    <div class="category-item">Animal and pets</div>
+                    <div class="category-item">Machinery tools</div>
+                    <div class="category-item">More category</div>
+                </div>
+            </div>
+            <div class="large-img">
+                <div class="large-img-content">
+                    <p>Latest Trending</p>
+                    <h1>Electronic items</h1>
+                    <button class="lrnMore-btn">Learn More</button>
+                </div>
+            </div>
+            <div class="discounts-colmn">
+                <div class="card login-card">
+                    <div class="user">
+                        <div class="user-pfp"></div>
+                        <p>Hi, user let's get started</p>
+                    </div>
+                    <button class="joinNow-btn">Join Now</button>
+                    <button class="login-btn">Log In</button>
+                </div>
+                <div class="card orng">
+                    <p>Get US $10 off with a new supplier</p>
+                </div>
+                <div class="card grn">
+                    <p>Send quotes with supplier preferences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deals and Offers -->
+
+    <section class="deals-offers-section">
+        <div class="deals-main">
+            <div class="deals-offers">
+                <h2>Deals and offers</h2>
+                <p class="subtitle">Hygiene equipments</p>
+                <div class="countdown" id="countdown">
+                    <div class="time-box">
+                        <span id="days">00</span>
+                        <small>Days</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours">00</span>
+                        <small>Hour</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes">00</span>
+                        <small>Min</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds">00</span>
+                        <small>Sec</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="catalog">
+                <div class="card">
+                    <img th:src="@{/images/C&G-1.png}" alt="Smart watch" />
+                    <h3 class="title">Smart watches</h3>
+                    <div class="badge">-25%</div>
+                </div>
+
+                <div class="card">
+                    <img th:src="@{/images/C&G-6.png}" alt="Laptop" />
+
+                    <h3 class="title">Laptops</h3>
+                    <div class="badge">-15%</div>
+                </div>
+
+                <div class="card">
+                    <img th:src="@{/images/C&G-2.png}" alt="Camera" />
+
+                    <h3 class="title">GoPro cameras</h3>
+                    <div class="badge">-40%</div>
+                </div>
+
+                <div class="card">
+                    <img th:src="@{/images/C&G-3.png}" alt="Headphones" />
+
+                    <h3 class="title">Headphones</h3>
+                    <div class="badge">-25%</div>
+                </div>
+
+                <div class="card">
+                    <img th:src="@{/images/C&G-7.png}" alt="Phone" />
+
+                    <h3 class="title">Canon camreras</h3>
+                    <div class="badge">-25%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- home and outdoors section -->
+
+    <section class="home-outdoors-section">
+        <div class="H-O-container">
+            <div
+                    class="H-O-title-img"
+                    th:style="'background-image: url(' + @{/images/H&O-main.png} + ')'"
+            >
+                <h2>Home and Outdoor</h2>
+                <button class="H-O-src-btn">Source Now</button>
+            </div>
+
+            <div class="H-O-cards">
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/H&O-1.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/H&O-2.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/H&O-3.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>from <br />USD 100</p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/H&O-4.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/H&O-5.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/H&O-6.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/H&O-7.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/H&O-8.png} + ')'"
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Electronic and gadget section -->
+
+    <section class="home-outdoors-section">
+        <div class="H-O-container">
+            <div
+                    class="H-O-title-img"
+                    th:style="'background-image: url(' + @{/images/C&G-main.png} + ')'"
+            >
+                <h2>Home and Outdoor</h2>
+                <button class="H-O-src-btn">Source Now</button>
+            </div>
+
+            <div class="H-O-cards">
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/C&G-1.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/C&G-2.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/C&G-3.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>from <br />USD 100</p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/C&G-4.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/C&G-5.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/C&G-6.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/C&G-7.png} + ')'"
+                    ></div>
+                </div>
+                <div class="card">
+                    <h3>soft chairs</h3>
+                    <p>
+                        from <br />
+                        USD 100
+                    </p>
+                    <div
+                            class="card-img"
+                            th:style="'background-image: url(' + @{/images/C&G-8.png} + ')'"
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote request section: paste this into the middle of your page where needed -->
+    <section class="quote-section" aria-labelledby="quote-heading">
+        <div class="quote-inner">
+            <div class="quote-hero">
+                <h2 id="quote-heading">
+                    An easy way to send requests to all suppliers
+                </h2>
+                <p class="lead">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                    eiusmod tempor incididunt.
+                </p>
+            </div>
+
+            <div class="inquiry-card" aria-labelledby="inquiry-heading">
+                <h3 id="inquiry-heading" class="card-title">
+                    Send quote to suppliers
+                </h3>
+
+                <form class="inquiry-form" action="#" method="post" novalidate>
+                    <label class="visually-hidden" for="item"
+                    >What item you need?</label
+                    >
+                    <input
+                            id="item"
+                            name="item"
+                            type="text"
+                            placeholder="What item you need?"
+                            required
+                    />
+
+                    <label class="visually-hidden" for="details">Details</label>
+                    <textarea
+                            id="details"
+                            name="details"
+                            rows="4"
+                            placeholder="Type more details"
+                    ></textarea>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="visually-hidden" for="quantity">Quantity</label>
+                            <input
+                                    id="quantity"
+                                    name="quantity"
+                                    type="number"
+                                    min="1"
+                                    placeholder="Quantity"
+                            />
+                        </div>
+
+                        <div class="col col--shrink">
+                            <label class="visually-hidden" for="unit">Unit</label>
+                            <select id="unit" name="unit" aria-label="Unit">
+                                <option value="pcs">Pcs</option>
+                                <option value="set">Set</option>
+                                <option value="box">Box</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Send inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended items section (paste in the middle of your page where needed) -->
+    <section class="recommended" aria-labelledby="recommended-heading">
+        <div class="recommended-inner">
+            <h2 id="recommended-heading" class="recommended-title">
+                Recommended items
+            </h2>
+
+            <div class="products-grid" role="list">
+                <!-- Card 1 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img
+                                th:src="@{/images/RI-1.png}"
+                                alt="Blue polo t-shirt"
+                                loading="lazy"
+                        />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$10.30</div>
+                        <div class="title">T-shirts with multiple colors, for men</div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img
+                                th:src="@{/images/RI-2.png}"
+                                alt="Brown jacket with hood"
+                                loading="lazy"
+                        />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$10.30</div>
+                        <div class="title">Jeans shorts for men blue color</div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img
+                                th:src="@{/images/RI-3.png}"
+                                alt="Blue suit jacket"
+                                loading="lazy"
+                        />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$12.50</div>
+                        <div class="title">Brown winter coat medium size</div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img
+                                th:src="@{/images/RI-4.png}"
+                                alt="Blue leather wallet"
+                                loading="lazy"
+                        />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$34.00</div>
+                        <div class="title">Jeans bag for travel for men</div>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img th:src="@{/images/RI-5.png}" alt="Blue backpack" loading="lazy" />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$99.00</div>
+                        <div class="title">Leather wallet</div>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img th:src="@{/images/RI-6.png}" alt="Denim shorts" loading="lazy" />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$9.99</div>
+                        <div class="title">Canon camera black, 100x zoom</div>
+                    </div>
+                </article>
+
+                <!-- Card 7 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img th:src="@{/images/RI-7.png}" alt="White headset" loading="lazy" />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$8.99</div>
+                        <div class="title">Headset for gaming with mic</div>
+                    </div>
+                </article>
+
+                <!-- Card 8 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img
+                                th:src="@{/images/RI-8.png}"
+                                alt="Blue backpack (repeat)"
+                                loading="lazy"
+                        />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$10.30</div>
+                        <div class="title">Smartwatch silver color modern</div>
+                    </div>
+                </article>
+
+                <!-- Card 9 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img th:src="@{/images/RI-9.png}" alt="Clay pot" loading="lazy" />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$10.30</div>
+                        <div class="title">Blue wallet for men leather material</div>
+                    </div>
+                </article>
+
+                <!-- Card 10 -->
+                <article class="product-card" role="listitem">
+                    <div class="thumb">
+                        <img th:src="@{/images/RI-9.png}" alt="Black kettle" loading="lazy" />
+                    </div>
+                    <div class="product-body">
+                        <div class="price">$80.95</div>
+                        <div class="title">Jeans bag for travel for men</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extra services -->
+    <section class="services-section" aria-labelledby="services-heading">
+        <h2 id="services-heading" class="section-title">Our extra services</h2>
+
+        <div class="services-grid" role="list">
+            <article class="service-card" role="listitem">
+                <div class="card-media" aria-hidden="true">
+                    <img th:src="@{/images/EX-S-1.png}" alt="" />
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Source from Industry Hubs</div>
+                </div>
+                <button class="card-icon" aria-label="Search suppliers">
+                    <!-- magnify SVG -->
+                    <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                    >
+                        <path
+                                d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"
+                                stroke="#2b6cb0"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        />
+                        <path
+                                d="M21 21l-4.35-4.35"
+                                stroke="#2b6cb0"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+            </article>
+
+            <article class="service-card" role="listitem">
+                <div class="card-media" aria-hidden="true">
+                    <img th:src="@{/images/EX-S-2.png}" alt="" />
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Customize Your Products</div>
+                </div>
+                <button class="card-icon" aria-label="Customization">
+                    <!-- box SVG -->
+                    <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                    >
+                        <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73L13 3.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73L11 20.73a2 2 0 0 0 2 0l6-3.27A2 2 0 0 0 21 16z"
+                                stroke="#2b6cb0"
+                                stroke-width="1.3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+            </article>
+
+            <article class="service-card" role="listitem">
+                <div class="card-media" aria-hidden="true">
+                    <img th:src="@{/images/EX-S-3.png}" alt="" />
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        Fast, reliable shipping by ocean or air
+                    </div>
+                </div>
+                <button class="card-icon" aria-label="Shipping">
+                    <!-- plane SVG -->
+                    <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                    >
+                        <path
+                                d="M2 16.5 22 9 13 14l-1 4-2-1-4 3 1-4L2 16.5z"
+                                stroke="#2b6cb0"
+                                stroke-width="1.3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+            </article>
+
+            <article class="service-card" role="listitem">
+                <div class="card-media" aria-hidden="true">
+                    <img th:src="@{/images/EX-S-4.png}" alt="" />
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Product monitoring and inspection</div>
+                </div>
+                <button class="card-icon" aria-label="Inspection">
+                    <!-- shield SVG -->
+                    <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                    >
+                        <path
+                                d="M12 3l8 4v5c0 5-3.58 9.74-8 11-4.42-1.26-8-6-8-11V7l8-4z"
+                                stroke="#2b6cb0"
+                                stroke-width="1.3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+            </article>
+        </div>
+    </section>
+
+    <!-- Suppliers by region -->
+    <section class="regions-section" aria-labelledby="regions-heading">
+        <h3 id="regions-heading" class="section-subtitle">
+            Suppliers by region
+        </h3>
+
+        <ul class="regions-list" role="list">
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/AE@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">Arabic Emirates</div>
+                    <div class="region-domain">shopname.ae</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/DK@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">Denmark</div>
+                    <div class="region-domain">denmark.com.dk</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/US@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">Australia</div>
+                    <div class="region-domain">shopname.ae</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/RU@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">France</div>
+                    <div class="region-domain">shopname.com.fr</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/IT@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">United States</div>
+                    <div class="region-domain">shopname.ae</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/DK@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">Russia</div>
+                    <div class="region-domain">shopname.ru</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/FR@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">Italy</div>
+                    <div class="region-domain">shopname.it</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/AE@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">China</div>
+                    <div class="region-domain">shopname.ae</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/CN@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">Great Britain</div>
+                    <div class="region-domain">shopname.co.uk</div>
+                </div>
+            </li>
+
+            <li class="region-item">
+                <div
+                        class="flag"
+                        th:style="'background-image: url(' + @{/images/GB@2x.png} + ')'"
+                ></div>
+                <div class="region-meta">
+                    <div class="region-name">Great Britain</div>
+                    <div class="region-domain">shopname.co.uk</div>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Newsletter subscribe section -->
+    <section class="newsletter">
+        <div class="wrap">
+            <h2 class="newsletter-title">Subscribe on our newsletter</h2>
+            <p class="newsletter-sub">
+                Get daily news on upcoming offers from many suppliers all over the
+                world
+            </p>
+
+            <form class="newsletter-form" action="#" method="post" novalidate>
+                <label class="visually-hidden" for="nl-email">Email</label>
+                <div class="input-wrap">
+                    <svg
+                            class="mail-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                    >
+                        <path
+                                d="M3 6.5v11A1.5 1.5 0 0 0 4.5 19h15a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 19.5 5h-15A1.5 1.5 0 0 0 3 6.5z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        />
+                        <path
+                                d="M21 7l-9 6-9-6"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        />
+                    </svg>
+                    <input
+                            id="nl-email"
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                    />
+                </div>
+
+                <button class="btn-subscribe" type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- Footer starting -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="wrap footer-top">
+            <div class="brand-col">
+                <div class="brand">
+                    <div class="brand-icon"></div>
+                    <span class="brand-name">Brand</span>
+                </div>
+
+                <p class="brand-desc">
+                    Best information about the company goes here but now lorem ipsum
+                    is
+                </p>
+
+                <div class="socials" aria-label="Social links">
+                    <a class="social" href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a class="social" href="#" aria-label="Twitter">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a class="social" href="#" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a class="social" href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="links-col" aria-label="Footer navigation">
+                <div class="col">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h4>Partnership</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Money Refund</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h4>For users</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">My Orders</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="apps-col" aria-hidden="false">
+                <h4>Get app</h4>
+                <div class="app-badges">
+                    <a href="#" aria-label="Download on the App Store">
+                        <div class="app-badge">
+                            <i class="fa-brands fa-apple" style="font-size: 40px"></i>
+                            <div class="badge-text">
+                                <p>
+                                    Download on the <br />
+                                    <span>App Store</span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" aria-label="Get it on Google Play">
+                        <div class="app-badge">
+                            <i
+                                    class="fa-brands fa-google-play"
+                                    style="font-size: 35px"
+                            ></i>
+                            <div class="badge-text">
+                                <p>
+                                    Get on <br />
+                                    <span>Google Play</span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="wrap bottom-inner">
+                <div class="copyright">© 2023 Ecommerce.</div>
+
+                <div class="lang">
+                    <button
+                            class="lang-btn"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                    >
+                        <div class="lang-btn-content">
+                            <div
+                                    class="lang-btn-icon"
+                                    th:style="'background-image: url(' + @{/images/US@2x.png} + ')'"
+                            ></div>
+                            <p>English</p>
+                            <i class="fa-solid fa-angle-up"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"
+></script>
+</body>
+</html>

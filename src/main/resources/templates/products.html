@@ -1,104 +1,182 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>ShopX — Category Listing (with Price/Condition/Ratings filters)</title>
-    <link rel="stylesheet" th:href="@{/css/style2.css}" />
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>e-commerce | Product Page</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+            integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/product.css}" />
 </head>
-<body class="shopx-root">
+<body>
+<!-- nav-1 -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <!-- Brand on the left -->
+        <a class="navbar-brand fw-bold" href="#">
+            <img th:src="@{/images/logo.png}" alt="Brand Logo" />Brand
+        </a>
 
-<!-- HEADER -->
-<header class="shopx-header">
-    <div class="shopx-container shopx-header-top">
-        <div class="shopx-brand">
-            <button class="shopx-brand__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="34" height="34" fill="none" aria-hidden="true">
-                    <rect x="3" y="6" width="18" height="14" rx="2" fill="#2B9AF3"/>
-                    <path d="M8 6V5a4 4 0 018 0v1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-            <div class="shopx-brand__name">Brand</div>
+        <!-- Search bar with category dropdown in the center -->
+        <div class="d-flex justify-content-center flex-grow-1">
+            <form class="nav-search d-flex w-75" role="search">
+                <div class="input-group" style="width: 100%">
+                    <input class="form-control" type="search" placeholder="Search" />
+                    <button
+                            class="btn btn-outline-secondary dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                    >
+                        All category
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Category 1</a></li>
+                        <li><a class="dropdown-item" href="#">Category 2</a></li>
+                    </ul>
+                    <button
+                            type="submit"
+                            class="btn btn-primary px-4"
+                            style="background-color: #0067ff"
+                    >
+                        Search
+                    </button>
+                </div>
+            </form>
         </div>
 
-        <form class="shopx-search" role="search" aria-label="Search form" th:action="@{/search}" method="get">
-            <input class="shopx-search__input" type="search" placeholder="Search" aria-label="Search" />
-            <div class="shopx-select">
-                <button id="shopx-cat-btn" class="shopx-btn shopx-select__btn" type="button" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-cat-menu">
-                    All category <span class="shopx-caret">▾</span>
-                </button>
-                <ul id="shopx-cat-menu" class="shopx-dropdown" role="menu" aria-hidden="true" data-owner="shopx-cat-btn">
-                    <li role="menuitem"><button class="shopx-dropdown__item">All category</button></li>
-                    <li role="menuitem"><button class="shopx-dropdown__item">Mobile accessory</button></li>
-                    <li role="menuitem"><button class="shopx-dropdown__item">Electronics</button></li>
-                    <li role="menuitem"><button class="shopx-dropdown__item">Smartphones</button></li>
-                </ul>
-            </div>
-            <button class="shopx-btn shopx-search__btn" type="submit">Search</button>
-        </form>
-
-        <nav class="shopx-actions" aria-label="Top actions">
-            <button class="shopx-icon-btn" aria-label="Profile" title="Profile">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20a8 8 0 0116 0" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <button class="shopx-icon-btn" aria-label="Messages" title="Messages">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#6b7280" stroke-width="1.2"/></svg>
-            </button>
-            <button class="shopx-icon-btn" aria-label="Orders" title="Orders">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke="#6b7280" stroke-width="1.2"/></svg>
-            </button>
-            <button class="shopx-cart-btn" aria-label="My cart">My cart</button>
-        </nav>
+        <!-- Icons on the right -->
+        <div class="upperNav-icons d-flex">
+            <a href="#" class="nav-link mx-2" title="Profile">
+                <i class="bi bi-person fs-5"></i><br />
+                <p>Profile</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="Message">
+                <i class="bi bi-chat fs-5"></i><br />
+                <p>Message</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="Orders">
+                <i class="bi bi-bag fs-5"></i>
+                <p>Orders</p>
+            </a>
+            <a href="#" class="nav-link mx-2" title="My cart">
+                <i class="bi bi-cart fs-5"></i>
+                <p>My cart</p>
+            </a>
+        </div>
     </div>
+</nav>
 
-    <div class="shopx-container shopx-nav-row" role="navigation" aria-label="Main nav">
-        <div class="shopx-nav-left">
-            <button id="shopx-allcat-btn" class="shopx-allcat-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-allcat-menu">☰ All category</button>
-            <ul class="shopx-nav-links" role="menubar">
-                <li role="none"><a role="menuitem" th:href="@{/hot-offers}">Hot offers</a></li>
-                <li role="none"><a role="menuitem" th:href="@{/gift-boxes}">Gift boxes</a></li>
-                <li role="none"><a role="menuitem" th:href="@{/projects}">Projects</a></li>
-                <li role="none"><a role="menuitem" th:href="@{/menu-item}">Menu item</a></li>
-                <li role="none" class="shopx-has-dropdown">
-                    <button id="shopx-help-btn" class="shopx-nav-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-help-menu">Help <span class="shopx-caret">▾</span></button>
-                    <ul id="shopx-help-menu" class="shopx-dropdown" role="menu" aria-hidden="true" data-owner="shopx-help-btn">
-                        <li role="menuitem"><a th:href="@{/help-center}">Help center</a></li>
-                        <li role="menuitem"><a th:href="@{/support}">Support</a></li>
-                        <li role="menuitem"><a th:href="@{/faq}">FAQ</a></li>
+<!-- nav-2 -->
+<nav class="navbar nav-lower navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-three-dots-vertical"></i>
+                        All category
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hot offers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gift boxes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Menu item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Help
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
-
-        <div class="shopx-nav-right">
-            <div class="shopx-mini-dropdown">
-                <button id="shopx-locale-btn" class="shopx-mini-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-locale-menu">English, USD ▾</button>
-                <ul id="shopx-locale-menu" class="shopx-dropdown shopx-dropdown--right" role="menu" aria-hidden="true" data-owner="shopx-locale-btn">
-                    <li role="menuitem"><button class="shopx-dropdown__item">English, USD</button></li>
-                    <li role="menuitem"><button class="shopx-dropdown__item">Deutsch, EUR</button></li>
-                </ul>
-            </div>
-
-            <div class="shopx-mini-dropdown">
-                <button id="shopx-shipto-btn" class="shopx-mini-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-shipto-menu">Ship to 🇩🇪 ▾</button>
-                <ul id="shopx-shipto-menu" class="shopx-dropdown shopx-dropdown--right" role="menu" aria-hidden="true" data-owner="shopx-shipto-btn">
-                    <li role="menuitem"><button class="shopx-dropdown__item">Germany</button></li>
-                    <li role="menuitem"><button class="shopx-dropdown__item">United States</button></li>
-                </ul>
-            </div>
+        <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navbarNavDropdown"
+        >
+            <ul class="navbar-nav" style="gap: 25px">
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        English, USD
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Ship to <img th:src="@{/images/GB@2x.png}" alt="Country Flag" />
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        <li><a class="dropdown-item" href="#">email</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
-</header>
+</nav>
 
 <!-- MAIN PAGE -->
 <main class="shopx-container shopx-main">
     <!-- breadcrumb -->
     <nav class="shopx-breadcrumb" aria-label="Breadcrumb">
         <ol>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/clothings}">Clothings</a></li>
-            <li><a th:href="@{/mens-wear}">Men's wear</a></li>
+            <li><a href="#">Home</a> <i class="fa-solid fa-angle-right"></i></li>
+            <li>
+                <a href="#">Clothings</a> <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">Men's wear</a> <i class="fa-solid fa-angle-right"></i>
+            </li>
             <li aria-current="page">Summer clothing</li>
         </ol>
     </nav>
@@ -107,364 +185,883 @@
         <!-- LEFT FILTERS -->
         <aside class="shopx-filters" aria-label="Filters">
             <div class="shopx-filter-card shopx-filter-card--sticky">
-
-                <!-- Category (existing) -->
+                <!-- Category -->
                 <div class="shopx-filter__section" data-accordion>
-                    <button class="shopx-accordion-btn" type="button" aria-expanded="true">Category <span class="shopx-acc-caret">▾</span></button>
+                    <button
+                            class="shopx-accordion-btn"
+                            type="button"
+                            aria-expanded="true"
+                    >
+                        Category <i class="fa-solid fa-angle-up"></i>
+                    </button>
                     <ul class="shopx-filter-list">
-                        <li><a th:href="@{/mobile-accessory}" class="active">Mobile accessory</a></li>
-                        <li><a th:href="@{/electronics}">Electronics</a></li>
-                        <li><a th:href="@{/smartphones}">Smartphones</a></li>
-                        <li><a th:href="@{/modern-tech}">Modern tech</a></li>
-                        <li><a th:href="@{/all}" class="shopx-seeall">See all</a></li>
+                        <li><a href="#" class="active">Mobile accessory</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Modern tech</a></li>
+                        <li>
+                            <a href="#" class="shopx-seeall" style="color: #2b9af3"
+                            >See all</a
+                            >
+                        </li>
                     </ul>
                 </div>
-                <hr/>
-                <!-- Brands (existing) -->
+                <hr />
+                <!-- Brands -->
                 <div class="shopx-filter__section" data-accordion>
-                    <button class="shopx-accordion-btn" type="button" aria-expanded="true">Brands <span class="shopx-acc-caret">▾</span></button>
+                    <button
+                            class="shopx-accordion-btn"
+                            type="button"
+                            aria-expanded="true"
+                    >
+                        Brands <i class="fa-solid fa-angle-up"></i>
+                    </button>
                     <div class="shopx-filter-checks">
                         <label><input type="checkbox" /> Samsung</label>
                         <label><input type="checkbox" /> Apple</label>
                         <label><input type="checkbox" /> Huawei</label>
                         <label><input type="checkbox" /> Pocco</label>
                         <label><input type="checkbox" /> Lenovo</label>
-                        <a th:href="@{/brands}" class="shopx-seeall">See all</a>
+                        <a class="shopx-seeall" href="#">See all</a>
                     </div>
                 </div>
-                <hr/>
-
-                <!-- Features (existing) -->
+                <hr />
+                <!-- Features -->
                 <div class="shopx-filter__section" data-accordion>
-                    <button class="shopx-accordion-btn" type="button" aria-expanded="true">Features <span class="shopx-acc-caret">▾</span></button>
+                    <button
+                            class="shopx-accordion-btn"
+                            type="button"
+                            aria-expanded="true"
+                    >
+                        Features <i class="fa-solid fa-angle-up"></i>
+                    </button>
                     <div class="shopx-filter-checks">
                         <label><input type="checkbox" /> Metallic</label>
                         <label><input type="checkbox" /> Plastic cover</label>
                         <label><input type="checkbox" /> 8GB Ram</label>
                         <label><input type="checkbox" /> Super power</label>
                         <label><input type="checkbox" /> Large Memory</label>
-                        <a th:href="@{/features}" class="shopx-seeall">See all</a>
+                        <a class="shopx-seeall" href="#">See all</a>
                     </div>
                 </div>
-                <hr/>
-                <!-- NEW: Price range -->
+                <hr />
+                <!-- Price range -->
                 <div class="shopx-filter__section" data-accordion>
-                    <button class="shopx-accordion-btn" type="button" aria-expanded="true">Price range <span class="shopx-acc-caret">▾</span></button>
-
+                    <button
+                            class="shopx-accordion-btn"
+                            type="button"
+                            aria-expanded="true"
+                    >
+                        Price range <i class="fa-solid fa-angle-up"></i>
+                    </button>
                     <div class="shopx-filter__content">
                         <div class="shopx-range" data-range>
                             <div class="shopx-range__track" aria-hidden="true"></div>
-
-                            <!-- Two overlaid range inputs -->
-                            <input class="shopx-range__input shopx-range__input--min" type="range" min="0" max="1000000" step="1" value="0" aria-label="Minimum price">
-                            <input class="shopx-range__input shopx-range__input--max" type="range" min="0" max="1000000" step="1" value="999999" aria-label="Maximum price">
-
+                            <input
+                                    class="shopx-range__input shopx-range__input--min"
+                                    type="range"
+                                    min="0"
+                                    max="1000000"
+                                    step="1"
+                                    value="0"
+                                    aria-label="Minimum price"
+                            />
+                            <input
+                                    class="shopx-range__input shopx-range__input--max"
+                                    type="range"
+                                    min="0"
+                                    max="1000000"
+                                    step="1"
+                                    value="999999"
+                                    aria-label="Maximum price"
+                            />
                             <div class="shopx-range__fields">
                                 <div class="shopx-range__field">
                                     <label class="shopx-small-label">Min</label>
-                                    <input type="number" class="shopx-input shopx-input--small" min="0" max="999999" value="0" aria-label="Min price input">
+                                    <input
+                                            type="number"
+                                            class="shopx-input shopx-input--small"
+                                            min="0"
+                                            max="999999"
+                                            value="0"
+                                            aria-label="Min price input"
+                                    />
                                 </div>
                                 <div class="shopx-range__field">
                                     <label class="shopx-small-label">Max</label>
-                                    <input type="number" class="shopx-input shopx-input--small" min="0" max="999999" value="999999" aria-label="Max price input">
+                                    <input
+                                            type="number"
+                                            class="shopx-input shopx-input--small"
+                                            min="0"
+                                            max="999999"
+                                            value="999999"
+                                            aria-label="Max price input"
+                                    />
                                 </div>
                             </div>
-
-                            <button class="shopx-btn shopx-range__apply" type="button">Apply</button>
+                            <button class="shopx-btn shopx-range__apply" type="button">
+                                Apply
+                            </button>
                         </div>
                     </div>
                 </div>
-                <hr/>
-                <!-- NEW: Condition -->
+                <hr />
+                <!-- Condition -->
                 <div class="shopx-filter__section" data-accordion>
-                    <button class="shopx-accordion-btn" type="button" aria-expanded="true">Condition <span class="shopx-acc-caret">▾</span></button>
+                    <button
+                            class="shopx-accordion-btn"
+                            type="button"
+                            aria-expanded="true"
+                    >
+                        Condition <i class="fa-solid fa-angle-up"></i>
+                    </button>
                     <div class="shopx-filter__content">
-                        <fieldset class="shopx-condition" role="radiogroup" aria-label="Condition">
+                        <fieldset
+                                class="shopx-condition"
+                                role="radiogroup"
+                                aria-label="Condition"
+                        >
                             <label class="shopx-condition__label">
-                                <input type="radio" name="shopx-condition" value="any" checked>
+                                <input
+                                        type="radio"
+                                        name="shopx-condition"
+                                        value="any"
+                                        checked
+                                />
                                 <span class="shopx-condition__fake">Any</span>
                             </label>
                             <label class="shopx-condition__label">
-                                <input type="radio" name="shopx-condition" value="refurbished">
+                                <input
+                                        type="radio"
+                                        name="shopx-condition"
+                                        value="refurbished"
+                                />
                                 <span class="shopx-condition__fake">Refurbished</span>
                             </label>
                             <label class="shopx-condition__label">
-                                <input type="radio" name="shopx-condition" value="brand-new">
+                                <input
+                                        type="radio"
+                                        name="shopx-condition"
+                                        value="brand-new"
+                                />
                                 <span class="shopx-condition__fake">Brand new</span>
                             </label>
                             <label class="shopx-condition__label">
-                                <input type="radio" name="shopx-condition" value="old">
+                                <input type="radio" name="shopx-condition" value="old" />
                                 <span class="shopx-condition__fake">Old items</span>
                             </label>
                         </fieldset>
                     </div>
                 </div>
-                <hr/>
-                <!-- NEW: Ratings -->
+                <hr />
+                <!-- Ratings -->
                 <div class="shopx-filter__section" data-accordion>
-                    <button class="shopx-accordion-btn" type="button" aria-expanded="true">Ratings <span class="shopx-acc-caret">▾</span></button>
+                    <button
+                            class="shopx-accordion-btn"
+                            type="button"
+                            aria-expanded="true"
+                    >
+                        Ratings <i class="fa-solid fa-angle-up"></i>
+                    </button>
                     <div class="shopx-filter__content">
                         <div class="shopx-ratings">
                             <label class="shopx-rating-row">
-                                <input type="checkbox" value="4">
+                                <input type="checkbox" value="4" />
                                 <span class="shopx-stars">
-                    <span class="shopx-starset">
-                      <!-- 4 filled, 1 empty (visually simplified by opacity on last star) -->
-                      <svg width="84" height="16" viewBox="0 0 84 16" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#f59e0b">
-                          <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/>
-                          <g transform="translate(18,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                          <g transform="translate(36,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                          <g transform="translate(54,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                        </g>
-                        <g transform="translate(72,0)" fill="#e5e7eb">
-                          <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/>
-                        </g>
-                      </svg>
+                      <span class="shopx-starset">
+                        <svg
+                                width="84"
+                                height="16"
+                                viewBox="0 0 84 16"
+                                xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g fill="#FF9017">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                            <g transform="translate(14,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                            <g transform="translate(28,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                            <g transform="translate(42,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                          </g>
+                          <g transform="translate(56,0)" fill="#e5e7eb">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                          </g>
+                        </svg>
+                      </span>
                     </span>
-                  </span>
                             </label>
-
                             <label class="shopx-rating-row">
-                                <input type="checkbox" value="4">
+                                <input type="checkbox" value="4" />
                                 <span class="shopx-stars">
-                    <span class="shopx-starset">
-                      <!-- 4 filled, 1 empty (visually simplified by opacity on last star) -->
-                      <svg width="84" height="16" viewBox="0 0 84 16" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#f59e0b">
-                          <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/>
-                          <g transform="translate(18,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                          <g transform="translate(36,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                          <g transform="translate(54,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                        </g>
-                        <g transform="translate(72,0)" fill="#e5e7eb">
-                          <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/>
-                        </g>
-                      </svg>
-                    </span>
-                  </span>
-                            </label>
+                      <span class="shopx-starset">
+                        <svg
+                                width="84"
+                                height="16"
+                                viewBox="0 0 84 16"
+                                xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g fill="#f59e0b">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                            <g transform="translate(14,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                            <g transform="translate(28,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                            <g transform="translate(42,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2
 
+,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                          </g>
+                          <g transform="translate(56,0)" fill="#e5e7eb">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                          </g>
+                        </svg>
+                      </span>
+                    </span>
+                            </label>
                             <label class="shopx-rating-row">
-                                <input type="checkbox" value="3">
+                                <input type="checkbox" value="3" />
                                 <span class="shopx-stars">
-                    <span class="shopx-starset">
-                      <!-- 3 filled, 2 empty -->
-                      <svg width="84" height="16" viewBox="0 0 84 16" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#f59e0b">
-                          <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/>
-                          <g transform="translate(18,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                          <g transform="translate(36,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                        </g>
-                        <g transform="translate(54,0)" fill="#e5e7eb"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                        <g transform="translate(72,0)" fill="#e5e7eb"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                      </svg>
+                      <span class="shopx-starset">
+                        <svg
+                                width="84"
+                                height="16"
+                                viewBox="0 0 84 16"
+                                xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g fill="#f59e0b">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                            <g transform="translate(14,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                            <g transform="translate(28,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                          </g>
+                          <g transform="translate(42,0)" fill="#e5e7eb">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                          </g>
+                          <g transform="translate(56,0)" fill="#e5e7eb">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                          </g>
+                        </svg>
+                      </span>
                     </span>
-                  </span>
                             </label>
-
                             <label class="shopx-rating-row">
-                                <input type="checkbox" value="2">
+                                <input type="checkbox" value="2" />
                                 <span class="shopx-stars">
-                    <span class="shopx-starset">
-                      <!-- 2 filled -->
-                      <svg width="84" height="16" viewBox="0 0 84 16" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#f59e0b">
-                          <polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/>
-                          <g transform="translate(18,0)"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                        </g>
-                        <g transform="translate(36,0)" fill="#e5e7eb"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                        <g transform="translate(54,0)" fill="#e5e7eb"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                        <g transform="translate(72,0)" fill="#e5e7eb"><polygon points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"/></g>
-                      </svg>
+                      <span class="shopx-starset">
+                        <svg
+                                width="84"
+                                height="16"
+                                viewBox="0 0 84 16"
+                                xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g fill="#f59e0b">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                            <g transform="translate(14,0)">
+                              <polygon
+                                      points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                              />
+                            </g>
+                          </g>
+                          <g transform="translate(28,0)" fill="#e5e7eb">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                          </g>
+                          <g transform="translate(42,0)" fill="#e5e7eb">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                          </g>
+                          <g transform="translate(56,0)" fill="#e5e7eb">
+                            <polygon
+                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                            />
+                          </g>
+                        </svg>
+                      </span>
                     </span>
-                  </span>
                             </label>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </aside>
 
-        <!-- MIDDLE LIST (unchanged from prior) -->
+        <!-- MIDDLE LIST -->
         <section class="shopx-listing" aria-label="Products">
             <div class="shopx-listing__header">
-                <div class="shopx-list-meta">12,911 items in <strong>Mobile accessory</strong></div>
+                <div class="shopx-list-meta">
+                    12,911 items in <strong>Mobile accessory</strong>
+                </div>
                 <div class="shopx-list-controls">
-                    <label class="shopx-checkbox-inline"><input type="checkbox" /> Verified only</label>
-
+                    <label class="shopx-checkbox-inline"
+                    ><input type="checkbox" /> Verified only</label
+                    >
                     <div class="shopx-select-inline">
-                        <button id="shopx-sort-btn" class="shopx-select-inline__btn shopx-btn" aria-haspopup="true" aria-expanded="false" data-dropdown="#shopx-sort-menu">
-                            Featured <span class="shopx-caret">▾</span>
+                        <button
+                                id="shopx-sort-btn"
+                                class="shopx-select-inline__btn shopx-btn"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                data-dropdown="#shopx-sort-menu"
+                        >
+                            Featured <i class="fa-solid fa-angle-down"></i>
                         </button>
-                        <ul id="shopx-sort-menu" class="shopx-dropdown" role="menu" aria-hidden="true" data-owner="shopx-sort-btn">
-                            <li role="menuitem"><button class="shopx-dropdown__item">Featured</button></li>
-                            <li role="menuitem"><button class="shopx-dropdown__item">Price: Low to High</button></li>
-                            <li role="menuitem"><button class="shopx-dropdown__item">Price: High to Low</button></li>
+                        <ul
+                                id="shopx-sort-menu"
+                                class="shopx-dropdown"
+                                role="menu"
+                                aria-hidden="true"
+                                data-owner="shopx-sort-btn"
+                        >
+                            <li role="menuitem">
+                                <button class="shopx-dropdown__item">Featured</button>
+                            </li>
+                            <li role="menuitem">
+                                <button class="shopx-dropdown__item">
+                                    Price: Low to High
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button class="shopx-dropdown__item">
+                                    Price: High to Low
+                                </button>
+                            </li>
                         </ul>
                     </div>
-
-                    <div class="shopx-view-toggle" role="toolbar" aria-label="View toggle">
-                        <button class="shopx-icon-btn shopx-view-btn shopx-view-btn--grid" data-view="grid" aria-pressed="true" title="Grid view" aria-label="Grid view">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#111827" stroke-width="1.2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="#111827" stroke-width="1.2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="#111827" stroke-width="1.2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="#111827" stroke-width="1.2"/></svg>
+                    <div
+                            class="shopx-view-toggle"
+                            role="toolbar"
+                            aria-label="View toggle"
+                    >
+                        <button
+                                class="shopx-icon-btn shopx-view-btn shopx-view-btn--grid"
+                                data-view="grid"
+                                aria-pressed="true"
+                                title="Grid view"
+                                aria-label="Grid view"
+                        >
+                            <i class="fas fa-border-all" style="font-size: 16px"></i>
                         </button>
-                        <button class="shopx-icon-btn shopx-view-btn shopx-view-btn--list" data-view="list" aria-pressed="false" title="List view" aria-label="List view">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="3" rx="1" stroke="#111827" stroke-width="1.2"/><rect x="3" y="12" width="18" height="3" rx="1" stroke="#111827" stroke-width="1.2"/><rect x="3" y="19" width="18" height="3" rx="1" stroke="#111827" stroke-width="1.2"/></svg>
+                        <button
+                                class="shopx-icon-btn shopx-view-btn shopx-view-btn--list"
+                                data-view="list"
+                                aria-pressed="false"
+                                title="List view"
+                                aria-label="List view"
+                        >
+                            <i class="fa-solid fa-bars" style="font-size: 16px"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
             <div id="shopx-products" class="shopx-products shopx-products--list">
-                <!-- Product rows (unchanged placeholder content) -->
                 <article class="shopx-product">
                     <div class="shopx-product__media">
-                        <img th:src="@{/images/iPhone.png}" alt="Phone">
+                        <img th:src="@{/images/C&G-8.png}" alt="Phone" />
                     </div>
                     <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">Canon Camera EOS 2000, Black 10x zoom</h3>
+                        <h3 class="shopx-product__title">
+                            Canon Camera EOS 2000, Black 10x zoom
+                        </h3>
                         <div class="shopx-price-row">
-                            <div class="shopx-price">$998.00 <span class="shopx-price--old">$1128.00</span></div>
-                            <div class="shopx-fav" title="Add to favorites" aria-hidden="true">♡</div>
+                            <div class="shopx-price">
+                                $998.00 <span class="shopx-price--old">$1128.00</span>
+                            </div>
+                            <div
+                                    class="shopx-fav"
+                                    title="Add to favorites"
+                                    aria-hidden="true"
+                            >
+                                ♡
+                            </div>
                         </div>
-
                         <div class="shopx-meta-row">
-                            <div class="shopx-rating">★★★★★ <span class="shopx-rating__score">7.5</span></div>
+                            <div class="shopx-rating">
+                                <svg
+                                        width="104"
+                                        height="36"
+                                        viewBox="0 0 84 16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g fill="#FF9017">
+                                        <polygon
+                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                        />
+                                        <g transform="translate(14,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(28,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(42,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(56,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="shopx-rating__score">7.5</span>
+                            </div>
                             <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping">• <span class="shopx-free">Free Shipping</span></div>
+                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
+                                • <span class="shopx-free">Free Shipping</span>
+                            </div>
                         </div>
+                        <p class="shopx-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                            <
 
-                        <p class="shopx-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                        <a class="shopx-link" th:href="@{/details}">View details</a>
+                            p>
+                            <a class="shopx-link" href="#">View details</a>
                     </div>
                 </article>
                 <article class="shopx-product">
                     <div class="shopx-product__media">
-                        <img th:src="@{/images/Laptops.png}" alt="Phone">
+                        <img th:src="@{/images/image 23.png}" alt="Phone" />
                     </div>
                     <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">Canon Camera EOS 2000, Black 10x zoom</h3>
+                        <h3 class="shopx-product__title">
+                            Canon Camera EOS 2000, Black 10x zoom
+                        </h3>
                         <div class="shopx-price-row">
-                            <div class="shopx-price">$998.00 <span class="shopx-price--old">$1128.00</span></div>
-                            <div class="shopx-fav" title="Add to favorites" aria-hidden="true">♡</div>
+                            <div class="shopx-price">
+                                $998.00 <span class="shopx-price--old">$1128.00</span>
+                            </div>
+                            <div
+                                    class="shopx-fav"
+                                    title="Add to favorites"
+                                    aria-hidden="true"
+                            >
+                                ♡
+                            </div>
                         </div>
-
                         <div class="shopx-meta-row">
-                            <div class="shopx-rating">★★★★★ <span class="shopx-rating__score">7.5</span></div>
+                            <div class="shopx-rating">
+                                <svg
+                                        width="104"
+                                        height="36"
+                                        viewBox="0 0 84 16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g fill="#FF9017">
+                                        <polygon
+                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                        />
+                                        <g transform="translate(14,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 rooftop2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(28,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(42,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(56,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="shopx-rating__score">7ка.5</span>
+                            </div>
                             <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping">• <span class="shopx-free">Free Shipping</span></div>
+                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
+                                • <span class="shopx-free">Free Shipping</span>
+                            </div>
                         </div>
-
-                        <p class="shopx-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                        <a class="shopx-link" th:href="@{/details}">View details</a>
+                        <p class="shopx-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                        </p>
+                        <a class="shopx-link" href="#">View details</a>
                     </div>
                 </article>
                 <article class="shopx-product">
                     <div class="shopx-product__media">
-                        <img th:src="@{/images/Camera.png}" alt="Phone">
+                        <img th:src="@{/images/C&G-7.png}" alt="Phone" />
                     </div>
                     <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">Canon Camera EOS 2000, Black 10x zoom</h3>
+                        <h3 class="shopx-product__title">
+                            Canon Camera EOS 2000, Black 10x zoom
+                        </h3>
                         <div class="shopx-price-row">
-                            <div class="shopx-price">$998.00 <span class="shopx-price--old">$1128.00</span></div>
-                            <div class="shopx-fav" title="Add to favorites" aria-hidden="true">♡</div>
+                            <div class="shopx-price">
+                                $998.00 <span class="shopx-price--old">$1128.00</span>
+                            </div>
+                            <div
+                                    class="shopx-fav"
+                                    title="Add to favorites"
+                                    aria-hidden="true"
+                            >
+                                ♡
+                            </div>
                         </div>
-
                         <div class="shopx-meta-row">
-                            <div class="shopx-rating">★★★★★ <span class="shopx-rating__score">7.5</span></div>
+                            <div class="shopx-rating">
+                                <svg
+                                        width="104"
+                                        height="36"
+                                        viewBox="0 0 84 16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g fill="#FF9017">
+                                        <polygon
+                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                        />
+                                        <g transform="translate(14,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(28,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(42,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(56,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="shopx-rating__score">7.5</span>
+                            </div>
                             <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping">• <span class="shopx-free">Free Shipping</span></div>
+                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
+                                • <span class="shopx-free">Free Shipping</span>
+                            </div>
                         </div>
-
-                        <p class="shopx-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                        <a class="shopx-link" th:href="@{/details}">View details</a>
-                    </div>
-                </article><article class="shopx-product">
-                <div class="shopx-product__media">
-                    <img th:src="@{/images/HeadPhones.png}" alt="Phone">
-                </div>
-                <div class="shopx-product__body">
-                    <h3 class="shopx-product__title">Canon Camera EOS 2000, Black 10x zoom</h3>
-                    <div class="shopx-price-row">
-                        <div class="shopx-price">$998.00 <span class="shopx-price--old">$1128.00</span></div>
-                        <div class="shopx-fav" title="Add to favorites" aria-hidden="true">♡</div>
-                    </div>
-
-                    <div class="shopx-meta-row">
-                        <div class="shopx-rating">★★★★★ <span class="shopx-rating__score">7.5</span></div>
-                        <div class="shopx-orders">• 154 orders</div>
-                        <div class="shopx-shipping">• <span class="shopx-free">Free Shipping</span></div>
-                    </div>
-
-                    <p class="shopx-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                    <a class="shopx-link" th:href="@{/details}">View details</a>
-                </div>
-            </article>
-                <article class="shopx-product">
-                    <div class="shopx-product__media">
-                        <img th:src="@{/images/iPhone1.png}" alt="Phone">
-                    </div>
-                    <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">Canon Camera EOS 2000, Black 10x zoom</h3>
-                        <div class="shopx-price-row">
-                            <div class="shopx-price">$998.00 <span class="shopx-price--old">$1128.00</span></div>
-                            <div class="shopx-fav" title="Add to favorites" aria-hidden="true">♡</div>
-                        </div>
-
-                        <div class="shopx-meta-row">
-                            <div class="shopx-rating">★★★★★ <span class="shopx-rating__score">7.5</span></div>
-                            <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping">• <span class="shopx-free">Free Shipping</span></div>
-                        </div>
-
-                        <p class="shopx-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                        <a class="shopx-link" th:href="@{/details}">View details</a>
+                        <p class="shopx-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                        </p>
+                        <a class="shopx-link" href="#">View details</a>
                     </div>
                 </article>
                 <article class="shopx-product">
                     <div class="shopx-product__media">
-                        <img th:src="@{/images/HeadPhones (2).png}" alt="Phone">
+                        <img
+                                th:src="@{/images/C&G-6.png}"
+                                alt="Phone"
+                                style="object-fit: contain"
+                        />
                     </div>
                     <div class="shopx-product__body">
-                        <h3 class="shopx-product__title">Canon Camera EOS 2000, Black 10x zoom</h3>
+                        <h3 class="shopx-product__title">
+                            Canon Camera EOS 2000, Black 10x zoom
+                        </h3>
                         <div class="shopx-price-row">
-                            <div class="shopx-price">$998.00 <span class="shopx-price--old">$1128.00</span></div>
-                            <div class="shopx-fav" title="Add to favorites" aria-hidden="true">♡</div>
+                            <div class="shopx-price">
+                                $998.00 <span class="shopx-price--old">$1128.00</span>
+                            </div>
+                            <div
+                                    class="shopx-fav"
+                                    title="Add to favorites"
+                                    aria-hidden="true"
+                            >
+                                ♡
+                            </div>
+                        </div>
+                        <div class="shopx-meta-row">
+                            <div class="shopx-rating">
+                                <svg
+                                        width="104"
+                                        height="36"
+                                        viewBox="0 0 84 16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g fill="#FF9017">
+                                        <polygon
+                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                        />
+                                        <g transform="translate(14,0)">
+                                            <polygon
+                                                    points="6ಸ,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(28,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(42,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(56,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="shopx-rating__score">7.5</span>
+                            </div>
+                            <div class="shopx-orders">• 154 orders</div>
+                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
+                                • <span class="shopx-free">Free Shipping</span>
+                            </div>
+                        </div>
+                        <p class="shopx-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                        </p>
+                        <a class="shopx-link" href="#">View details</a>
+                    </div>
+                </article>
+                <article class="shopx-product">
+                    <div class="shopx-product__media">
+                        <img th:src="@{/images/C&G-1.png}" alt="Phone" />
+                    </div>
+                    <div class="shopx-product__body">
+                        <h3 class="shopx-product__title">
+                            Canon Camera EOS 2000, Black 10x zoom
+                        </h3>
+                        <div class="shopx-price-row">
+                            <div class="shopx-price">
+                                $998.00 <span class="shopx-price--old">$1128.00</span>
+                            </div>
+                            <div
+                                    class="shopx-fav"
+                                    title="Add to favorites"
+                                    aria-hidden="true"
+                            >
+                                ♡
+                            </div>
+                        </div>
+                        <div class="shopx-meta-row">
+                            <div class="shopx-rating">
+                                <svg
+                                        width="104"
+                                        height="36"
+                                        viewBox="0 0 84 16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g fill="#FF9017">
+                                        <polygon
+                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                        />
+                                        <g transform="translate(14,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(28,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(42,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(56,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="shopx-rating__score">7.5</span>
+                            </div>
+                            <div class="shopx-orders">• 154 orders</div>
+                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
+                                • <span class="shopx-free">Free Shipping</span>
+                            </div>
+                        </div>
+                        <p class="shopx-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                        </p>
+                        <a class="shopx-link" href="#">View details</a>
+                    </div>
+                </article>
+                <article class="shopx-product">
+                    <div class="shopx-product__media">
+                        <img th:src="@{/images/C&G-3.png}" alt="Phone" />
+                    </div>
+                    <div class="shopx-product__body">
+                        <h3 class="shopx-product__title">
+                            Canon Camera EOS 2000, Black 10xPhotoshop xAI
+                        </h3>
+                        <div class="shopx-price-row">
+                            <div class="shopx-price">
+                                $998.00 <span class="shopx-price--old">$1128.00</span>
+                            </div>
+                            <div
+                                    class="shopx-fav"
+                                    title="Add to favorites"
+                                    aria-hidden="true"
+                            >
+                                ♡
+                            </div>
                         </div>
 
                         <div class="shopx-meta-row">
-                            <div class="shopx-rating">★★★★★ <span class="shopx-rating__score">7.5</span></div>
+                            <div class="shopx-rating">
+                                <svg
+                                        width="104"
+                                        height="36"
+                                        viewBox="0 0 84 16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g fill="#FF9017">
+                                        <polygon
+                                                points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                        />
+                                        <g transform="translate(14,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(28,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(42,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                        <g transform="translate(56,0)">
+                                            <polygon
+                                                    points="6,0 8,4 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,4"
+                                            />
+                                        </g>
+                                    </g>
+                                </svg>
+
+                                <span class="shopx-rating__score">7.5</span>
+                            </div>
                             <div class="shopx-orders">• 154 orders</div>
-                            <div class="shopx-shipping">• <span class="shopx-free">Free Shipping</span></div>
+                            <div class="shopx-shipping" style="flex-direction: row; display: flex; gap: 2px;">
+                                • <span class="shopx-free">Free Shipping</span>
+                            </div>
                         </div>
 
-                        <p class="shopx-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                        <a class="shopx-link" th:href="@{/details}">View details</a>
+                        <p class="shopx-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                        </p>
+                        <a class="shopx-link" href="#">View details</a>
                     </div>
                 </article>
-
             </div>
         </section>
-
-
     </div>
 </main>
 <!-- Newsletter subscribe section -->
 <section class="newsletter">
     <div class="wrap">
         <h2 class="newsletter-title">Subscribe on our newsletter</h2>
-        <p class="newsletter-sub">Get daily news on upcoming offers from many suppliers all over the world</p>
+        <p class="newsletter-sub">
+            Get daily news on upcoming offers from many suppliers all over the
+            world
+        </p>
 
-        <form class="newsletter-form" th:action="@{/subscribe}" method="post" novalidate>
+        <form class="newsletter-form" action="#" method="post" novalidate>
             <label class="visually-hidden" for="nl-email">Email</label>
             <div class="input-wrap">
-                <svg class="mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M3 6.5v11A1.5 1.5 0 0 0 4.5 19h15a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 19.5 5h-15A1.5 1.5 0 0 0 3 6.5z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M21 7l-9 6-9-6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg
+                        class="mail-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                >
+                    <path
+                            d="M3 6.5v11A1.5 1.5 0 0 0 4.5 19h15a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 19.5 5h-15A1.5 1.5 0 0 0 3 6.5z"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    />
+                    <path
+                            d="M21 7l-9 6-9-6"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    />
                 </svg>
-                <input id="nl-email" name="email" type="email" placeholder="Email" required>
+                <input
+                        id="nl-email"
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        required
+                />
             </div>
 
             <button class="btn-subscribe" type="submit">Subscribe</button>
@@ -472,18 +1069,12 @@
     </div>
 </section>
 
-<!-- Footer -->
+<!-- Footer starting -->
 <footer class="site-footer" role="contentinfo">
-    <div class=" footer-top">
+    <div class="wrap footer-top">
         <div class="brand-col">
             <div class="brand">
-          <span class="brand-icon" aria-hidden="true">
-            <!-- simple bag icon -->
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 7V6a6 6 0 0 1 12 0v1"></path>
-              <rect x="3" y="7" width="18" height="14" rx="2"></rect>
-            </svg>
-          </span>
+                <div class="brand-icon"></div>
                 <span class="brand-name">Brand</span>
             </div>
 
@@ -492,17 +1083,17 @@
             </p>
 
             <div class="socials" aria-label="Social links">
-                <a class="social" th:href="@{/facebook}" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.2V12h2.2V9.8c0-2.2 1.3-3.4 3.3-3.4.96 0 1.96.17 1.96.17v2.2h-1.12c-1.1 0-1.44.68-1.44 1.37V12h2.45l-.39 2.9h-2.06v7A10 10 0 0 0 22 12z"/></svg>
+                <a class="social" href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
                 </a>
-                <a class="social" th:href="@{/twitter}" aria-label="Twitter">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22 5.9c-.6.3-1.2.6-1.9.8.7-.4 1.2-1 1.4-1.8-.6.4-1.4.6-2.2.8A3.9 3.9 0 0 0 12.3 8c0 .3 0 .7.1 1C8.4 9 5 7 2.6 3.6c-.3.5-.4 1-.4 1.7 0 1.3.6 2.4 1.6 3.1-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.4 3 3.8-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.4 3.3 2.5A7.8 7.8 0 0 1 2 19.5c-.4 0-.8 0-1.2-.1C1.1 20.6 6 22 11 22c6.6 0 10.2-5.5 10.2-10.2v-.5c.7-.5 1.2-1.2 1.6-2z"/></svg>
+                <a class="social" href="#" aria-label="Twitter">
+                    <i class="fa-brands fa-twitter"></i>
                 </a>
-                <a class="social" th:href="@{/linkedin}" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.5-.9 1.7-1.7 3.4-1.7 3.6 0 4.3 2.4 4.3 5.5V21H19v-5.4c0-1.3 0-3-1.8-3-1.8 0-2.1 1.4-2.1 2.9V21H9z"/></svg>
+                <a class="social" href="#" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
                 </a>
-                <a class="social" th:href="@{/instagram}" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8zm5.2-3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+                <a class="social" href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
                 </a>
             </div>
         </div>
@@ -511,40 +1102,40 @@
             <div class="col">
                 <h4>About</h4>
                 <ul>
-                    <li><a th:href="@{/about-us}">About Us</a></li>
-                    <li><a th:href="@{/find-store}">Find store</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/blogs}">Blogs</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Find store</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Blogs</a></li>
                 </ul>
             </div>
 
             <div class="col">
                 <h4>Partnership</h4>
                 <ul>
-                    <li><a th:href="@{/about-us}">About Us</a></li>
-                    <li><a th:href="@{/find-store}">Find store</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/blogs}">Blogs</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Find store</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Blogs</a></li>
                 </ul>
             </div>
 
             <div class="col">
                 <h4>Information</h4>
                 <ul>
-                    <li><a th:href="@{/help-center}">Help Center</a></li>
-                    <li><a th:href="@{/money-refund}">Money Refund</a></li>
-                    <li><a th:href="@{/shipping}">Shipping</a></li>
-                    <li><a th:href="@{/contact-us}">Contact us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Money Refund</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Contact us</a></li>
                 </ul>
             </div>
 
             <div class="col">
                 <h4>For users</h4>
                 <ul>
-                    <li><a th:href="@{/login}">Login</a></li>
-                    <li><a th:href="@{/register}">Register</a></li>
-                    <li><a th:href="@{/settings}">Settings</a></li>
-                    <li><a th:href="@{/my-orders}">My Orders</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">My Orders</a></li>
                 </ul>
             </div>
         </nav>
@@ -552,21 +1143,28 @@
         <div class="apps-col" aria-hidden="false">
             <h4>Get app</h4>
             <div class="app-badges">
-                <a class="app-badge" href="#" aria-label="Download on the App Store">
-                    <!-- simplified App Store badge -->
-                    <svg viewBox="0 0 120 34" width="120" height="34" aria-hidden="true">
-                        <rect width="120" height="34" rx="6" fill="#000"/>
-                        <text x="18" y="22" fill="#fff" font-size="9" font-family="Arial, sans-serif">Download on the</text>
-                        <text x="18" y="29" fill="#fff" font-size="12" font-weight="700" font-family="Arial, sans-serif">App Store</text>
-                    </svg>
+                <a href="#" aria-label="Download on the App Store">
+                    <div class="app-badge">
+                        <i class="fa-brands fa-apple" style="font-size: 40px"></i>
+                        <div class="badge-text">
+                            <p>
+                                Download on the <br />
+                                <span>App Store</span>
+                            </p>
+                        </div>
+                    </div>
                 </a>
 
-                <a class="app-badge" href="#" aria-label="Get it on Google Play">
-                    <svg viewBox="0 0 140 34" width="140" height="34" aria-hidden="true">
-                        <rect width="140" height="34" rx="6" fill="#111"/>
-                        <text x="16" y="22" fill="#fff" font-size="9" font-family="Arial, sans-serif">GET IT ON</text>
-                        <text x="16" y="29" fill="#fff" font-size="12" font-weight="700" font-family="Arial, sans-serif">Google Play</text>
-                    </svg>
+                <a href="#" aria-label="Get it on Google Play">
+                    <div class="app-badge">
+                        <i class="fa-brands fa-google-play" style="font-size: 35px"></i>
+                        <div class="badge-text">
+                            <p>
+                                Get on <br />
+                                <span>Google Play</span>
+                            </p>
+                        </div>
+                    </div>
                 </a>
             </div>
         </div>
@@ -578,16 +1176,413 @@
 
             <div class="lang">
                 <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
-                    <span class="flag-emoji" aria-hidden="true">🇺🇸</span>
-                    <span class="lang-label">English</span>
-                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <div class="lang-btn-content">
+                        <div
+                                class="lang-btn-icon"
+                                style="background-image: url('images/US@2x.png')"
+                        ></div>
+                        <p>English</p>
+                        <i class="fa-solid fa-angle-up"></i>
+                    </div>
                 </button>
             </div>
         </div>
     </div>
 </footer>
 
-<script th:src="@{/js/script.js}">
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"
+></script>
+<script>
+    /* script.js — ShopX interactive behaviors (extended with range/ratings)
+ - Namespaced classes/IDs (shopx-*) to avoid collisions
+ - Dropdowns: open/close, keyboard (Enter/Space/ArrowDown/Escape), click outside closes
+ - Accordion filters: expand/collapse
+ - Sort/category selection updates visible label
+ - View toggle (grid / list)
+ - Price double-range slider: two range inputs + numeric fields + Apply button
+ - Ratings/Condition: plain inputs; you can wire them to filtering later
+*/
+
+    (function () {
+      // Helpers
+      const find = (sel) => Array.from(document.querySelectorAll(sel));
+      const one = (sel) => document.querySelector(sel);
+
+      /* DROPDOWNS */
+      const dropdownButtons = find("[data-dropdown]");
+      const openMenus = new Set();
+
+      function openDropdown(btn, menu) {
+        if (!menu || !btn) return;
+        closeAllDropdowns();
+        btn.setAttribute("aria-expanded", "true");
+        menu.classList.add("shopx-open");
+        menu.classList.add("bp-open");
+        menu.setAttribute("aria-hidden", "false");
+        openMenus.add(menu);
+        const rect = menu.getBoundingClientRect();
+        if (rect.right > window.innerWidth - 12) {
+          menu.classList.add("shopx-flip-right");
+          menu.style.left = "auto";
+          menu.style.right = "0";
+        }
+        const first = menu.querySelector("button, a");
+        if (first) first.focus();
+      }
+
+      function closeDropdown(btn, menu) {
+        if (!menu || !btn) return;
+        btn.setAttribute("aria-expanded", "false");
+        menu.classList.remove("shopx-open", "bp-open", "shopx-flip-right");
+        menu.setAttribute("aria-hidden", "true");
+        menu.style.left = "";
+        menu.style.right = "";
+        openMenus.delete(menu);
+      }
+
+      function closeAllDropdowns() {
+        openMenus.forEach((menu) => {
+          const ownerId = menu.getAttribute("data-owner");
+          let owner = ownerId
+            ? document.getElementById(ownerId)
+            : menu.parentElement.querySelector("[data-dropdown]");
+          if (owner) owner.setAttribute("aria-expanded", "false");
+          menu.classList.remove("shopx-open", "bp-open", "shopx-flip-right");
+          menu.setAttribute("aria-hidden", "true");
+          menu.style.left = "";
+          menu.style.right = "";
+        });
+        openMenus.clear();
+      }
+
+      dropdownButtons.forEach((btn) => {
+        const targetSelector = btn.getAttribute("data-dropdown");
+        const menu = targetSelector
+          ? document.querySelector(targetSelector)
+          : btn.parentElement.querySelector(".shopx-dropdown");
+
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (!menu) return;
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          if (expanded) closeDropdown(btn, menu);
+          else openDropdown(btn, menu);
+        });
+
+        // keyboard open
+        btn.addEventListener("keydown", (e) => {
+          if (["Enter", " ", "ArrowDown"].includes(e.key)) {
+            e.preventDefault();
+            const menu = targetSelector
+              ? document.querySelector(targetSelector)
+              : btn.parentElement.querySelector(".shopx-dropdown");
+            if (menu) openDropdown(btn, menu);
+          } else if (e.key === "Escape") {
+            const menu = targetSelector
+              ? document.querySelector(targetSelector)
+              : btn.parentElement.querySelector(".shopx-dropdown");
+            if (menu) closeDropdown(btn, menu);
+          }
+        });
+      });
+
+      // dropdown internal keyboard nav & selection
+      find(".shopx-dropdown").forEach((menu) => {
+        menu.addEventListener("keydown", (e) => {
+          const items = Array.from(menu.querySelectorAll("button, a")).filter(
+            Boolean
+          );
+          if (!items.length) return;
+          const idx = items.indexOf(document.activeElement);
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            items[(idx + 1) % items.length].focus();
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            items[(idx - 1 + items.length) % items.length].focus();
+          } else if (e.key === "Home") {
+            e.preventDefault();
+            items[0].focus();
+          } else if (e.key === "End") {
+            e.preventDefault();
+            items[items.length - 1].focus();
+          } else if (e.key === "Escape") {
+            const ownerId = menu.getAttribute("data-owner");
+            const owner = ownerId
+              ? document.getElementById(ownerId)
+              : menu.parentElement.querySelector("[data-dropdown]");
+            if (owner) {
+              closeDropdown(owner, menu);
+              owner.focus();
+            } else closeAllDropdowns();
+          }
+        });
+
+        menu.addEventListener("click", (e) => {
+          const clicked = e.target.closest("button, a");
+          if (!clicked) return;
+          const ownerId = menu.getAttribute("data-owner");
+          if (ownerId) {
+            const ownerBtn = document.getElementById(ownerId);
+            // update label for category or sort selects
+            if (
+              (menu.id === "shopx-cat-menu" ||
+                menu.id === "shopx-sort-menu") &&
+              ownerBtn
+            ) {
+              const caret = ownerBtn.querySelector(".shopx-caret");
+              ownerBtn.textContent = clicked.textContent.trim();
+              if (caret) ownerBtn.appendChild(caret);
+            }
+            if (ownerBtn) {
+              closeDropdown(ownerBtn, menu);
+              ownerBtn.focus();
+            }
+          } else {
+            closeAllDropdowns();
+          }
+        });
+      });
+
+      // click outside to close
+      document.addEventListener("click", (e) => {
+        if (openMenus.size === 0) return;
+        let inside = false;
+        openMenus.forEach((m) => {
+          if (m.contains(e.target)) inside = true;
+        });
+        if (!inside) closeAllDropdowns();
+      });
+
+      // Escape global
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeAllDropdowns();
+      });
+
+      // ACCORDIONS (filters)
+      find("[data-accordion]").forEach((section) => {
+        const btn = section.querySelector(".shopx-accordion-btn");
+        // content is next element (list or div)
+        const next = btn.nextElementSibling;
+        if (!next) return;
+        function setState(expanded) {
+          btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+          next.style.display = expanded ? "" : "none";
+        }
+        // keep visible if aria-expanded not explicitly set (default true)
+        setState(
+          btn.getAttribute("aria-expanded") === "false" ? false : true
+        );
+
+        btn.addEventListener("click", () => {
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          setState(!expanded);
+        });
+      });
+
+      // VIEW TOGGLE (grid / list)
+      const productsContainer = one("#shopx-products");
+      find(".shopx-view-btn").forEach((b) => {
+        b.addEventListener("click", () => {
+          const view = b.getAttribute("data-view");
+          find(".shopx-view-btn").forEach((x) =>
+            x.setAttribute("aria-pressed", "false")
+          );
+          b.setAttribute("aria-pressed", "true");
+          if (view === "grid") {
+            productsContainer.classList.remove("shopx-products--list");
+            productsContainer.classList.add("shopx-products--grid");
+            document.querySelectorAll(".shopx-desc").forEach((desc)=>{
+              desc.style.display="none"
+            })
+             document.querySelectorAll(".shopx-free").forEach((desc)=>{
+              desc.style.display="none"
+            })
+               document.querySelectorAll(".shopx-orders").forEach((desc)=>{
+              desc.style.display="none"
+            })
+              document.querySelectorAll(".shopx-link").forEach((desc)=>{
+              desc.style.display="none"
+            })
+             document.querySelectorAll(".shopx-product").forEach((desc)=>{
+              desc.classList.add("shopx-products_grid")
+            })
+
+          } else {
+            productsContainer.classList.remove("shopx-products--grid");
+            productsContainer.classList.add("shopx-products--list");
+             document.querySelectorAll(".shopx-product").forEach((desc)=>{
+              desc.classList.remove("shopx-products_grid")
+                document.querySelectorAll(".shopx-desc").forEach((desc)=>{
+              desc.style.display="flex"
+            })
+             document.querySelectorAll(".shopx-free").forEach((desc)=>{
+              desc.style.display="flex"
+            })
+               document.querySelectorAll(".shopx-orders").forEach((desc)=>{
+              desc.style.display="flex"
+            })
+              document.querySelectorAll(".shopx-link").forEach((desc)=>{
+              desc.style.display="flex"
+            })
+            })
+          }
+        });
+      });
+
+      if (productsContainer)
+        productsContainer.classList.add("shopx-products--list");
+
+      // PRICE RANGE (double-thumb)
+      function initRange(containerSelector) {
+        const container = one(containerSelector);
+        if (!container) return;
+        const minRange = container.querySelector(".shopx-range__input--min");
+        const maxRange = container.querySelector(".shopx-range__input--max");
+        const minInput = container.querySelector(
+          '.shopx-input--small[type="number"]'
+        );
+        const maxInput =
+          container.querySelectorAll(
+            '.shopx-input--small[type="number"]'
+          )[1] ||
+          container.querySelector('.shopx-input--small[type="number"]');
+        const applyBtn = container.querySelector(".shopx-range__apply");
+        const track = container.querySelector(".shopx-range__track");
+        const min = Number(minRange.min || 0);
+        const max = Number(minRange.max || 1000000);
+        const gap = 0; // minimum gap between thumbs
+
+        function setPositions() {
+          const minVal = Math.min(
+            Number(minRange.value),
+            Number(maxRange.value) - gap
+          );
+          const maxVal = Math.max(
+            Number(maxRange.value),
+            Number(minRange.value) + gap
+          );
+
+          // sync numeric inputs
+          if (minInput) minInput.value = minVal;
+          if (maxInput) maxInput.value = maxVal;
+
+          // calculate percentages for filled segment
+          const range = max - min;
+          const leftPercent = ((minVal - min) / range) * 100;
+          const rightPercent = ((maxVal - min) / range) * 100;
+
+          // paint track with gradient: unfilled - filled - unfilled
+          const trackLeft = leftPercent;
+          const trackRight = rightPercent;
+          track.style.background = `linear-gradient(90deg, #dbeafe ${trackLeft}%, #2B9AF3 ${trackLeft}%, #2B9AF3 ${trackRight}%, #dbeafe ${trackRight}%)`;
+
+          // set data attribute for CSS if needed
+          container.setAttribute("data-filled", "true");
+        }
+
+        // keep thumbs from crossing
+        minRange.addEventListener("input", () => {
+          if (Number(minRange.value) > Number(maxRange.value) - gap) {
+            minRange.value = Number(maxRange.value) - gap;
+          }
+          setPositions();
+        });
+        maxRange.addEventListener("input", () => {
+          if (Number(maxRange.value) < Number(minRange.value) + gap) {
+            maxRange.value = Number(minRange.value) + gap;
+          }
+          setPositions();
+        });
+
+        // number inputs update ranges
+        if (minInput) {
+          minInput.addEventListener("change", () => {
+            let v = Number(minInput.value || min);
+            v = Math.max(min, Math.min(v, Number(maxRange.value)));
+            minRange.value = v;
+            setPositions();
+          });
+        }
+        if (maxInput) {
+          maxInput.addEventListener("change", () => {
+            let v = Number(maxInput.value || max);
+            v = Math.min(max, Math.max(v, Number(minRange.value)));
+            maxRange.value = v;
+            setPositions();
+          });
+        }
+
+        // apply button (for now simply logs; integrate to real filtering later)
+        if (applyBtn) {
+          applyBtn.addEventListener("click", () => {
+            const selectedMin = Number(minRange.value);
+            const selectedMax = Number(maxRange.value);
+            console.log("Price filter applied:", {
+              min: selectedMin,
+              max: selectedMax,
+            });
+            // TODO: hook this to actual filtering logic (client-side or API)
+            // Example: dispatch a custom event
+            container.dispatchEvent(
+              new CustomEvent("shopx:priceApplied", {
+                detail: { min: selectedMin, max: selectedMax },
+              })
+            );
+          });
+        }
+
+        // initialize
+        // ensure sensible order
+        if (Number(minRange.value) > Number(maxRange.value))
+          minRange.value = min;
+        setPositions();
+      }
+
+      // init price range inside the filters block
+      initRange(".shopx-range");
+
+      // Ratings and Condition controls are standard form inputs. For UX we can expose events.
+      // Example: listen for rating selections
+      find('.shopx-rating-row input[type="checkbox"]').forEach((cb) => {
+        cb.addEventListener("change", () => {
+          // compute selected ratings
+          const selected = find(
+            '.shopx-rating-row input[type="checkbox"]:checked'
+          ).map((i) => i.value);
+          // dispatch or log
+          console.log("Selected ratings:", selected);
+          document.dispatchEvent(
+            new CustomEvent("shopx:ratingsChanged", { detail: selected })
+          );
+        });
+      });
+
+      // Condition radio change:
+      find('input[name="shopx-condition"]').forEach((r) => {
+        r.addEventListener("change", () => {
+          console.log("Condition selected:", r.value);
+          document.dispatchEvent(
+            new CustomEvent("shopx:conditionChanged", { detail: r.value })
+          );
+        });
+      });
+
+      // Keep dropdowns responsive (clear inline styles on resize)
+      window.addEventListener("resize", () => {
+        find(".shopx-dropdown").forEach((m) => {
+          m.style.left = "";
+          m.style.right = "";
+        });
+        // re-init range painting so track sizes recalc
+        initRange(".shopx-range");
+      });
+
+      // small accessibility enhancement: focus trap not implemented here
+    })();
 </script>
 </body>
 </html>
